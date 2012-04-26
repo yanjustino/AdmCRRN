@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmCRRN", "AdmCRRN\AdmCRRN.csproj", "{D1A54745-0E41-45C7-9699-8762F6CF6D88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmCRRN.Tests", "AdmCRRN.Tests\AdmCRRN.Tests.csproj", "{280AF756-E9CF-423B-9182-C57A9E696EAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1A54745-0E41-45C7-9699-8762F6CF6D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A54745-0E41-45C7-9699-8762F6CF6D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A54745-0E41-45C7-9699-8762F6CF6D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A54745-0E41-45C7-9699-8762F6CF6D88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
