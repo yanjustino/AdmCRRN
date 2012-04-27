@@ -1,0 +1,8 @@
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll.config
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.pdb
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.dll
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.pdb
+d:\projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.csprojResolveAssemblyReference.cache
+d:\projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.dll
+d:\projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb

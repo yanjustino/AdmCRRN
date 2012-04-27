@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmCRRN", "AdmCRRN\AdmCRRN.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmCRRN.Tests", "AdmCRRN.Tests\AdmCRRN.Tests.csproj", "{280AF756-E9CF-423B-9182-C57A9E696EAE}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "AdmCRRN.Documentacao", "AdmCRRN.Documentacao\AdmCRRN.Documentacao.modelproj", "{60371292-1631-4375-86BF-532D4E0647BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{280AF756-E9CF-423B-9182-C57A9E696EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60371292-1631-4375-86BF-532D4E0647BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60371292-1631-4375-86BF-532D4E0647BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60371292-1631-4375-86BF-532D4E0647BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60371292-1631-4375-86BF-532D4E0647BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
