@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace AdmCRRN.Models
+namespace AdmCRRN.Models.Transporte
 {
 
     public class ChangePasswordModel
