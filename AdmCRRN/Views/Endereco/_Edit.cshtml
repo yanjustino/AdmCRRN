@@ -1,0 +1,51 @@
+﻿@model AdmCRRN.Models.Membro
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Bairro)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Bairro)
+        @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Cep)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Cep)
+        @Html.ValidationMessageFor(model => model.Endereco.Cep)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Cidade)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Cidade)
+        @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Logradouro)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Logradouro)
+        @Html.ValidationMessageFor(model => model.Endereco.Logradouro)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Numero)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Numero)
+        @Html.ValidationMessageFor(model => model.Endereco.Numero)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Uf)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Uf)
+        @Html.ValidationMessageFor(model => model.Endereco.Uf)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Endereco.Complemento)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Endereco.Complemento)
+        @Html.ValidationMessageFor(model => model.Endereco.Complemento)
+    </div>
