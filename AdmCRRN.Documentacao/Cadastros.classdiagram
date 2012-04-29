@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="9e7df02e-509f-4af9-a1ea-6f0ce932a01e" name="Cadastro" linkedPackageId="5fa0ce20-6878-439e-9b28-0721c8290192" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="9e7df02e-509f-4af9-a1ea-6f0ce932a01e" name="Cadastro" linkedPackageId="5fa0ce20-6878-439e-9b28-0721c8290192" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="9654eb3e-6318-4d68-8bd0-ca45c47a2e46">
       <elementDefinition Id="ad6a3777-9fa1-4011-9c7f-aaf66db7a0c0" />
@@ -155,6 +155,9 @@
           <property Id="1c402a0f-00fd-4217-9500-d57e2393924c" name="CEP" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="3e94d1c8-8277-4991-ab95-ba09617c3abc" />
           </property>
+          <property Id="0a748252-2aa0-4f1d-9340-6f6eaf8a0b89" name="Complemento" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8b566cf9-2611-4fb4-8291-9755fb487253" />
+          </property>
         </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -240,6 +243,9 @@
           </property>
           <property Id="f23f941b-4df3-443e-ad7e-3d89e98c5c83" name="Id" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="8e07377b-3295-437a-a93d-0c221c5ab3f5" />
+          </property>
+          <property Id="56f18722-1820-4f9c-9425-7119b62fd4a5" name="Tipo" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7703551e-3133-47d7-9331-68f1a124000b" />
           </property>
         </ownedAttributesInternal>
       </class>
