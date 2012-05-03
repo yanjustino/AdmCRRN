@@ -1,7 +1,0 @@
-d:\projetos\AdmCRRN\AdmCRRN\bin\AdmCRRN.dll
-d:\projetos\AdmCRRN\AdmCRRN\bin\AdmCRRN.pdb
-d:\projetos\AdmCRRN\AdmCRRN\bin\EntityFramework.dll
-d:\projetos\AdmCRRN\AdmCRRN\bin\EntityFramework.xml
-d:\projetos\AdmCRRN\AdmCRRN\obj\Debug\AdmCRRN.csprojResolveAssemblyReference.cache
-d:\projetos\AdmCRRN\AdmCRRN\obj\Debug\AdmCRRN.dll
-d:\projetos\AdmCRRN\AdmCRRN\obj\Debug\AdmCRRN.pdb
