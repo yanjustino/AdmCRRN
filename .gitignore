@@ -1,3 +1,5 @@
 AdmCRRN/obj/
 AdmCRRN/bin/
+AdmCRRN.Tests/obj/
+AdmCRRN.Tests/bin/
 *.suo
