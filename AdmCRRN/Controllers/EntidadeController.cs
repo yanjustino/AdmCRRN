@@ -5,6 +5,7 @@ using AdmCRRN.Models.Agregados;
 
 namespace AdmCRRN.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class EntidadeController : Controller
     {
         DataContext contexto = new DataContext();
@@ -61,6 +62,7 @@ namespace AdmCRRN.Controllers
                 if (ModelState.IsValid)
                 {
                     contexto.Entry(model).State = System.Data.EntityState.Modified;
+                    contexto.Entry(model.Endereco).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();
 
                     return RedirectToAction("Index");

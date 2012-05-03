@@ -5,6 +5,7 @@ using AdmCRRN.Models.Agregados;
 
 namespace AdmCRRN.Controllers
 {
+    [Authorize(Roles="Usuario")]
     public class MembroController : Controller
     {
         DataContext contexto = new DataContext();
@@ -50,7 +51,8 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(contexto.Membros.Find(id));
+            Membro model = contexto.Membros.Find(id);
+            return View(model);
         }
 
         [HttpPost]
@@ -61,6 +63,7 @@ namespace AdmCRRN.Controllers
                 if (ModelState.IsValid)
                 {
                     contexto.Entry(model).State = System.Data.EntityState.Modified;
+                    contexto.Entry(model.Endereco).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();
 
                     return RedirectToAction("Index");
