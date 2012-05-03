@@ -1,51 +1,56 @@
-﻿@model AdmCRRN.Models.Membro
-
+﻿@model AdmCRRN.Models.Agregados.Endereco
+@{
+    using (var Endereco = Model)
+    { 
+    @Html.HiddenFor(model => Endereco.Id)
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Bairro)
+        @Html.LabelFor(model => Endereco.Bairro)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Bairro)
-        @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+        @Html.EditorFor(model => Endereco.Bairro)
+        @Html.ValidationMessageFor(model => Endereco.Bairro)
     </div>
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Cep)
+        @Html.LabelFor(model => Endereco.Cep)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Cep)
-        @Html.ValidationMessageFor(model => model.Endereco.Cep)
+        @Html.EditorFor(model => Endereco.Cep)
+        @Html.ValidationMessageFor(model => Endereco.Cep)
     </div>
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Cidade)
+        @Html.LabelFor(model => Endereco.Cidade)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Cidade)
-        @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+        @Html.EditorFor(model => Endereco.Cidade)
+        @Html.ValidationMessageFor(model => Endereco.Cidade)
     </div>
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Logradouro)
+        @Html.LabelFor(model => Endereco.Logradouro)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Logradouro)
-        @Html.ValidationMessageFor(model => model.Endereco.Logradouro)
+        @Html.EditorFor(model => Endereco.Logradouro)
+        @Html.ValidationMessageFor(model => Endereco.Logradouro)
     </div>
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Numero)
+        @Html.LabelFor(model => Endereco.Numero)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Numero)
-        @Html.ValidationMessageFor(model => model.Endereco.Numero)
+        @Html.EditorFor(model => Endereco.Numero)
+        @Html.ValidationMessageFor(model => Endereco.Numero)
     </div>
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Uf)
+        @Html.LabelFor(model => Endereco.Uf)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Uf)
-        @Html.ValidationMessageFor(model => model.Endereco.Uf)
+        @Html.EditorFor(model => Endereco.Uf)
+        @Html.ValidationMessageFor(model => Endereco.Uf)
     </div>
     <div class="editor-label">
-        @Html.LabelFor(model => model.Endereco.Complemento)
+        @Html.LabelFor(model => Endereco.Complemento)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Endereco.Complemento)
-        @Html.ValidationMessageFor(model => model.Endereco.Complemento)
+        @Html.EditorFor(model => Endereco.Complemento)
+        @Html.ValidationMessageFor(model => Endereco.Complemento)
     </div>
+    }
+}

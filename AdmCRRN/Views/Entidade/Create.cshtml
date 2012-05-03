@@ -31,7 +31,7 @@
             @Html.ValidationMessageFor(model => model.Nome)
         </div>
 
-        @Html.Partial("~/Views/Endereco/_Edit.cshtml", Model)
+        @Html.Partial("~/Views/Endereco/_Edit.cshtml", Model.Endereco)
 
         <p>
             <input type="submit" value="Create" />

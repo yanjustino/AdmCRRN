@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 namespace AdmCRRN.Models.Agregados
 {
     [Table("Enderecos")]
-    public class Endereco
+    public class Endereco: IDisposable
     {
         public int Id { get; set; }
         public string Bairro { get; set; }
@@ -12,5 +13,14 @@ namespace AdmCRRN.Models.Agregados
         public string Numero { get; set; }
         public string Uf { get; set; }
         public string Complemento { get; set; }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            //throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
