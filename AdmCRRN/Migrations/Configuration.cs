@@ -4,6 +4,8 @@ namespace AdmCRRN.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Web.Security;
+    using AdmCRRN.Models.Transporte;
 
     internal sealed class Configuration : DbMigrationsConfiguration<AdmCRRN.Context.DataContext>
     {
@@ -26,6 +28,21 @@ namespace AdmCRRN.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            if (!Roles.GetAllRoles().Contains(RegisterModel.SUPER))
+                Roles.CreateRole(RegisterModel.SUPER);
+
+            if (!Roles.GetAllRoles().Contains(RegisterModel.ADMIN))
+                Roles.CreateRole(RegisterModel.ADMIN);
+
+            if (!Roles.GetAllRoles().Contains(RegisterModel.USUARIO))
+                Roles.CreateRole(RegisterModel.USUARIO);
+
+            if (Membership.GetUser("admcrrn") == null)
+            {
+                Membership.CreateUser("admcrrn", "admcrrn");
+                Roles.AddUserToRole("admcrrn", RegisterModel.SUPER);
+            }
         }
     }
 }

@@ -15,12 +15,27 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Register", "Account", FormMethod.Post)) {
     @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
     <div>
+
+        @if (Model.AccountType == AdmCRRN.Models.Transporte.AccountsType.Super)
+        { 
+            <h2>Super usuário</h2>
+        }
+        else if (Model.AccountType == AdmCRRN.Models.Transporte.AccountsType.Admin)
+        { 
+            <h2>Administrador</h2>
+        }
+        else
+        { 
+            <h2>Usuário</h2>
+        }
+
         <fieldset>
             <legend>Account Information</legend>
 
+            @Html.HiddenFor(m => Model.AccountType)
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
             </div>

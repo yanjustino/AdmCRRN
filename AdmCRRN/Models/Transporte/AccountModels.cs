@@ -7,7 +7,6 @@ using System.Web.Security;
 
 namespace AdmCRRN.Models.Transporte
 {
-
     public class ChangePasswordModel
     {
         [Required]
@@ -42,8 +41,19 @@ namespace AdmCRRN.Models.Transporte
         public bool RememberMe { get; set; }
     }
 
+    public enum AccountsType
+    {
+        Super,
+        Admin,
+        Usuario
+    }
+
     public class RegisterModel
     {
+        public const string SUPER = "Super";
+        public const string ADMIN = "Admin";
+        public const string USUARIO = "Usuario";
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
@@ -63,5 +73,7 @@ namespace AdmCRRN.Models.Transporte
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public AccountsType AccountType { get; set; }
     }
 }

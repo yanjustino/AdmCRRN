@@ -11,17 +11,10 @@ namespace AdmCRRN.Controllers
 {
     public class AccountController : Controller
     {
-
-        //
-        // GET: /Account/LogOn
-
         public ActionResult LogOn()
         {
             return View();
         }
-
-        //
-        // POST: /Account/LogOn
 
         [HttpPost]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
@@ -51,9 +44,6 @@ namespace AdmCRRN.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/LogOff
-
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
@@ -61,16 +51,29 @@ namespace AdmCRRN.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/Register
-
+        [Authorize(Roles="Super, Admin")]
         public ActionResult Register()
         {
-            return View();
+            RegisterModel model = new RegisterModel();
+            model.AccountType = AccountsType.Usuario;
+            return View(model);
         }
 
-        //
-        // POST: /Account/Register
+        [Authorize(Roles="Super")]
+        public ActionResult RegisterSuper()
+        {
+            RegisterModel model = new RegisterModel();
+            model.AccountType = AccountsType.Super;
+            return View("Register", model);
+        }
+
+        [Authorize(Roles="Super, Admin")]
+        public ActionResult RegisterAdmin()
+        {
+            RegisterModel model = new RegisterModel();
+            model.AccountType = AccountsType.Admin;
+            return View("Register", model);
+        }
 
         [HttpPost]
         public ActionResult Register(RegisterModel model)
@@ -81,9 +84,15 @@ namespace AdmCRRN.Controllers
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
+                if (model.AccountType == AccountsType.Super )
+                    Roles.AddUserToRole(model.UserName, RegisterModel.SUPER);
+                else if (model.AccountType == AccountsType.Admin)
+                    Roles.AddUserToRole(model.UserName, RegisterModel.ADMIN);
+                else
+                    Roles.AddUserToRole(model.UserName, RegisterModel.USUARIO);
+
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -96,17 +105,11 @@ namespace AdmCRRN.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ChangePassword
-
         [Authorize]
         public ActionResult ChangePassword()
         {
             return View();
         }
-
-        //
-        // POST: /Account/ChangePassword
 
         [Authorize]
         [HttpPost]
@@ -141,9 +144,6 @@ namespace AdmCRRN.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
-        // GET: /Account/ChangePasswordSuccess
 
         public ActionResult ChangePasswordSuccess()
         {
