@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
+using System.Linq;
 using AdmCRRN.Context;
 using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
+using AdmCRRN.Models.Sessoes;
 
 namespace AdmCRRN.Controllers
 {
@@ -12,7 +14,9 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index()
         {
-            return View(contexto.Membros);
+            var entidade = (Entidade)ContaSession.InstituicaoDaConta();
+            var entidades = contexto.Membros.Where(e => e.Entidade.Id == entidade.Id);
+            return View(entidades);
         }
 
         public ActionResult Details(int id)
@@ -35,6 +39,8 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    int idEntidade = ContaSession.InstituicaoDaConta().Id;
+                    model.Entidade = contexto.Entidades.Find(idEntidade);
                     contexto.Membros.Add(model);
                     contexto.SaveChanges();
 

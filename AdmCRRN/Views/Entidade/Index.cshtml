@@ -19,6 +19,9 @@
         <th>
             Nome
         </th>
+        <th>
+            Tipo Entidade
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -29,10 +32,13 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
         <td>
-            @item.Cnpj
+            @item.CNPJ
         </td>
         <td>
             @item.Nome
+        </td>
+        <td>
+            @item.NomeTipoEntidade
         </td>
     </tr>
 }

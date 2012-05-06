@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdmCRRN.Models.CentroAdministrativo>
+﻿@model IEnumerable<AdmCRRN.Models.Centro>
 
 @{
     ViewBag.Title = "Index";
@@ -26,10 +26,10 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
         </td>
         <td>
-            @item.Cnpj
+            @item.CNPJ
         </td>
         <td>
             @item.Nome

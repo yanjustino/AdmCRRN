@@ -6,35 +6,35 @@ using AdmCRRN.Models.Agregados;
 namespace AdmCRRN.Controllers
 {
     [Authorize(Roles="Super")]
-    public class CentroAdministrativoController : Controller
+    public class CentroController : Controller
     {
         DataContext contexto = new DataContext();
         
         public ActionResult Index()
         {
-            return View(contexto.CentrosAdministrativos);
+            return View(contexto.Centros);
         }
 
         public ActionResult Details(int id)
         {
-            return View(contexto.CentrosAdministrativos.Find(id));
+            return View(contexto.Centros.Find(id));
         }
 
         public ActionResult Create()
         {
-            CentroAdministrativo model = new CentroAdministrativo();
+            Centro model = new Centro();
             model.Endereco = new Endereco();
             return View(model);
         } 
 
         [HttpPost]
-        public ActionResult Create(CentroAdministrativo model)
+        public ActionResult Create(Centro model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    contexto.CentrosAdministrativos.Add(model);
+                    contexto.Centros.Add(model);
                     contexto.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -50,11 +50,11 @@ namespace AdmCRRN.Controllers
         
         public ActionResult Edit(int id)
         {
-            return View(contexto.CentrosAdministrativos.Find(id));
+            return View(contexto.Centros.Find(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(CentroAdministrativo model)
+        public ActionResult Edit(Centro model)
         {
             try
             {
@@ -77,16 +77,16 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(contexto.CentrosAdministrativos.Find(id));
+            return View(contexto.Centros.Find(id));
         }
 
         [HttpPost]
-        public ActionResult Delete(CentroAdministrativo model)
+        public ActionResult Delete(Centro model)
         {
             try
             {
-                model = contexto.CentrosAdministrativos.Find(model.Id);
-                contexto.CentrosAdministrativos.Remove(model);
+                model = contexto.Centros.Find(model.Id);
+                contexto.Centros.Remove(model);
                 contexto.SaveChanges();
 
                 return RedirectToAction("Index");

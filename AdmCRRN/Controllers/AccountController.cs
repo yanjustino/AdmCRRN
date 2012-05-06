@@ -6,11 +6,16 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using AdmCRRN.Models.Transporte;
+using AdmCRRN.Models;
+using AdmCRRN.Context;
+using AdmCRRN.Models.Sessoes;
 
 namespace AdmCRRN.Controllers
 {
     public class AccountController : Controller
     {
+        DataContext contexto = new DataContext();
+
         public ActionResult LogOn()
         {
             return View();
@@ -24,6 +29,11 @@ namespace AdmCRRN.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    var chave = (Guid)Membership.GetUser(model.UserName).ProviderUserKey;
+                    var conta = contexto.Contas.Where(c => c.IdUsuario == chave).FirstOrDefault();
+                    ContaSession.Adicionar(conta);
+
+
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -47,31 +57,41 @@ namespace AdmCRRN.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+            ContaSession.Encerrar();
 
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles="Super, Admin")]
-        public ActionResult Register()
+        [Authorize(Roles = "Super, Admin")]
+        public ActionResult Register(int id)
         {
-            RegisterModel model = new RegisterModel();
-            model.AccountType = AccountsType.Usuario;
+            RegisterModel model = new RegisterModel()
+            {
+                IdInstituicao = id,
+                AccountType = AccountsType.Usuario
+            };
+
             return View(model);
         }
 
-        [Authorize(Roles="Super")]
+        [Authorize(Roles = "Super")]
         public ActionResult RegisterSuper()
         {
+
             RegisterModel model = new RegisterModel();
             model.AccountType = AccountsType.Super;
             return View("Register", model);
         }
 
-        [Authorize(Roles="Super, Admin")]
-        public ActionResult RegisterAdmin()
+        [Authorize(Roles = "Super, Admin")]
+        public ActionResult RegisterAdmin(int id)
         {
-            RegisterModel model = new RegisterModel();
-            model.AccountType = AccountsType.Admin;
+            RegisterModel model = new RegisterModel()
+            {
+                IdInstituicao = id,
+                AccountType = AccountsType.Admin
+            };
+
             return View("Register", model);
         }
 
@@ -84,7 +104,7 @@ namespace AdmCRRN.Controllers
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
-                if (model.AccountType == AccountsType.Super )
+                if (model.AccountType == AccountsType.Super)
                     Roles.AddUserToRole(model.UserName, RegisterModel.SUPER);
                 else if (model.AccountType == AccountsType.Admin)
                     Roles.AddUserToRole(model.UserName, RegisterModel.ADMIN);
@@ -93,12 +113,17 @@ namespace AdmCRRN.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    Conta conta = new Conta();
+                    conta.IdUsuario = (Guid)Membership.GetUser(model.UserName).ProviderUserKey;
+                    conta.Instituicao = contexto.Instituicoes.Find(model.IdInstituicao);
+
+                    contexto.Contas.Add(conta);
+                    contexto.SaveChanges();
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
-                {
                     ModelState.AddModelError("", ErrorCodeToString(createStatus));
-                }
             }
 
             // If we got this far, something failed, redisplay form

@@ -8,6 +8,7 @@ namespace AdmCRRN.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";

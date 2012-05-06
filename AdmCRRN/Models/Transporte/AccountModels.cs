@@ -75,5 +75,7 @@ namespace AdmCRRN.Models.Transporte
         public string ConfirmPassword { get; set; }
 
         public AccountsType AccountType { get; set; }
+
+        public int IdInstituicao { get; set; }
     }
 }

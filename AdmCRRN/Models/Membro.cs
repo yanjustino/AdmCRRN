@@ -8,13 +8,11 @@ namespace AdmCRRN.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Informe o Cpf")]
-        public string Cpf { get; set; }
-
-        [Required(ErrorMessage = "Informe o nome do Membro")]
+        [Required(ErrorMessage = "Informe o CPF")]
+        public string CPF { get; set; }
         public string Nome { get; set; }
 
-        public virtual Endereco Endereco { get; set; }
         public virtual Entidade Entidade { get; set; }
+        public virtual Endereco Endereco { get; set; }
     }
 }

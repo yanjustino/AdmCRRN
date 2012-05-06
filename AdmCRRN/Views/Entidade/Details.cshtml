@@ -11,15 +11,14 @@
     <legend>Entidade</legend>
 
     <div class="display-label">Cnpj</div>
-    <div class="display-field">@Model.Cnpj</div>
+    <div class="display-field">@Model.CNPJ</div>
 
     <div class="display-label">Nome</div>
     <div class="display-field">@Model.Nome</div>
 
-    @Html.Partial("~/Views/Endereco/_Details.cshtml", Model.Endereco)
-
 </fieldset>
 <p>
+    @Html.ActionLink("Novo Usuário", "Register", "Account", new { id = Model.Id }, null) |
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

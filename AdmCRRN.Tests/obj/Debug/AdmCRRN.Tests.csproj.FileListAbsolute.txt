@@ -1,0 +1,10 @@
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll.config
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.pdb
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.dll
+d:\projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.pdb
+d:\projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.dll
+d:\projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb
+d:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.dll
+d:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.xml
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\ResolveAssemblyReference.cache
