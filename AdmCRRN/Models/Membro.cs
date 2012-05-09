@@ -3,6 +3,13 @@ using AdmCRRN.Models.Agregados;
 
 namespace AdmCRRN.Models
 {
+    public enum TipoMembro : int
+    {
+        Membro = 0,
+        Congregado = 1,
+        Criança = 2
+    }
+
     [Table("Membros")]
     public class Membro
     {
@@ -14,5 +21,7 @@ namespace AdmCRRN.Models
 
         public virtual Entidade Entidade { get; set; }
         public virtual Endereco Endereco { get; set; }
+        public int Tipo { get; set; }
+        public virtual TipoMembro NomeTipoMembro { get { return (TipoMembro)this.Tipo; } }
     }
 }

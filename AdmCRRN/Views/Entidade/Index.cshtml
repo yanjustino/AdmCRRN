@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdmCRRN.Models.Entidade>
+﻿@model IEnumerable<AdmCRRN.Models.Transporte.EntidadeDTO>
 
 @{
     ViewBag.Title = "Index";
@@ -20,11 +20,23 @@
             Nome
         </th>
         <th>
-            Tipo Entidade
+            Tipo
+        </th>
+        <th>
+            Membros
+        </th>
+        <th>
+            Congregados
+        </th>
+        <th>
+            Crianças
+        </th>
+        <th>
+            Total
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.ToList()) {
     <tr>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
@@ -39,6 +51,18 @@
         </td>
         <td>
             @item.NomeTipoEntidade
+        </td>
+        <td>
+            @item.QuantidadeMembros()
+        </td>
+        <td>
+            @item.QuantidadeCongregados()
+        </td>
+        <td>
+            @item.QuantidadeCriancas()
+        </td>
+        <td>
+            @item.Membros.Count
         </td>
     </tr>
 }

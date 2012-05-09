@@ -26,6 +26,11 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.TipoMembro = new SelectList( new [] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString(), Selected=true },
+                                                          new { Value=((int)TipoMembro.Congregado).ToString(), Text=TipoMembro.Congregado.ToString(), Selected=false },
+                                                          new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString(), Selected=true } }, 
+                                                  "Value", "Text", "Selected" );
+
             Membro model = new Membro();
             model.Endereco = new Endereco();
             //model.Entidade = null;

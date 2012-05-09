@@ -81,6 +81,7 @@
     <Compile Include="Models\Instituicao.cs" />
     <Compile Include="Models\Sessoes\ContaSession.cs" />
     <Compile Include="Models\Transporte\AccountModels.cs" />
+    <Compile Include="Models\Transporte\EntidadeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,7 +227,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4060</DevelopmentServerPort>
+          <DevelopmentServerPort>46022</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

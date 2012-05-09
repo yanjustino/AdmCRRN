@@ -1,15 +1,15 @@
-﻿using System.Web.Mvc;
-using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using AdmCRRN.Context;
 using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
-using System.Web.Security;
 using AdmCRRN.Models.Sessoes;
+using AdmCRRN.Models.Transporte;
 
 namespace AdmCRRN.Controllers
 {
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class EntidadeController : Controller
     {
         DataContext contexto = new DataContext();
@@ -17,8 +17,26 @@ namespace AdmCRRN.Controllers
         public ActionResult Index()
         {
             var centro = (Centro)ContaSession.InstituicaoDaConta();
-            var entidades = contexto.Entidades.Where(e => e.Centro.Id == centro.Id);
-            return View(entidades);
+            var entidades = contexto.Entidades.Where(e => e.Centro.Id == centro.Id).ToList();
+
+            var entidadesDTO = new List<EntidadeDTO>();
+            foreach (var item in entidades)
+            {
+                entidadesDTO.Add(new EntidadeDTO()
+                                 {
+                                     Centro = item.Centro,
+                                     CNPJ = item.CNPJ,
+                                     Contas = item.Contas,
+                                     Endereco = item.Endereco,
+                                     Id = item.Id,
+                                     Membros = item.Membros,
+                                     Nome = item.Nome,
+                                     Tipo = item.Tipo
+                                 });
+
+            }
+
+            return View(entidadesDTO);
         }
 
         public ActionResult Details(int id)
@@ -30,7 +48,6 @@ namespace AdmCRRN.Controllers
         {
             Entidade model = new Entidade();
             model.Endereco = new Endereco();
-            //model.CentroAdministrativo = null;
             return View(model);
         }
 

@@ -33,7 +33,6 @@ namespace AdmCRRN.Controllers
                     var conta = contexto.Contas.Where(c => c.IdUsuario == chave).FirstOrDefault();
                     ContaSession.Adicionar(conta);
 
-
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {

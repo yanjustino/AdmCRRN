@@ -2,6 +2,8 @@
 using AdmCRRN.Context;
 using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace AdmCRRN.Controllers
 {

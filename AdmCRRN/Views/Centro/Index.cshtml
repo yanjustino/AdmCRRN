@@ -19,9 +19,12 @@
         <th>
             Nome
         </th>
+        <th>
+            Entidades
+        </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.ToList()) {
     <tr>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
@@ -33,6 +36,9 @@
         </td>
         <td>
             @item.Nome
+        </td>
+        <td>
+            @item.Entidades.Count
         </td>
     </tr>
 }

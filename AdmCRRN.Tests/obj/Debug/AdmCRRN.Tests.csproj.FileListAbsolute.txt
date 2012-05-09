@@ -8,3 +8,13 @@ d:\projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb
 d:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.dll
 d:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.xml
 D:\Projetos\AdmCRRN\AdmCRRN.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll.config
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.pdb
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.dll
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.dll
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.pdb
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.xml
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.dll
+D:\cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb
