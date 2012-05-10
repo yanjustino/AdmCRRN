@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using AdmCRRN.Models.Agregados;
+using AdmCRRN.Models.Atributos;
 
 namespace AdmCRRN.Models
 {
@@ -15,6 +16,7 @@ namespace AdmCRRN.Models
         [Required(ErrorMessage = "Informe o nome do Centro Administrativos")]
         public string Nome { get; set; }
 
+        [ValidacaoCNPJCPF]
         [Required(ErrorMessage = "Informe o CNPJ")]
         public string CNPJ { get; set; }
 

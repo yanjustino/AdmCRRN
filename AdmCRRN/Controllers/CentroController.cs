@@ -42,7 +42,7 @@ namespace AdmCRRN.Controllers
                     return RedirectToAction("Index");
                 }
 
-                return View();
+                return View(model);
             }
             catch
             {

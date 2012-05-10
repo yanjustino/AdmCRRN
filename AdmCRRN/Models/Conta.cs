@@ -13,5 +13,8 @@ namespace AdmCRRN.Models
 
         public Guid IdUsuario { get; set; }
         public virtual Instituicao Instituicao { get; set; }
+
+
+
     }
 }

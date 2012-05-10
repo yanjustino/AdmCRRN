@@ -9,12 +9,29 @@ using AdmCRRN.Models.Transporte;
 using AdmCRRN.Models;
 using AdmCRRN.Context;
 using AdmCRRN.Models.Sessoes;
+using AdmCRRN.Models.ViewModel;
 
 namespace AdmCRRN.Controllers
 {
     public class AccountController : Controller
     {
         DataContext contexto = new DataContext();
+
+
+        public ActionResult Index()
+        {
+            var entidade = ContaSession.ContaNaSessao();
+
+            List<Conta> contas = null;
+            if (entidade == null)
+                contas = contexto.Contas.ToList();
+            else
+                contas = contexto.Contas.Where(e => e.Instituicao.Id == entidade.Instituicao.Id).ToList();
+
+            var viewModel = new UsuarioViewModel();
+            var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
+            return View(usuarios);
+        }
 
         public ActionResult LogOn()
         {

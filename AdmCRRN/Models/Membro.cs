@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using AdmCRRN.Models.Agregados;
+using AdmCRRN.Models.Atributos;
 
 namespace AdmCRRN.Models
 {
@@ -15,8 +16,10 @@ namespace AdmCRRN.Models
     {
         public int Id { get; set; }
 
+        [ValidacaoCNPJCPF]
         [Required(ErrorMessage = "Informe o CPF")]
         public string CPF { get; set; }
+
         public string Nome { get; set; }
 
         public virtual Entidade Entidade { get; set; }
