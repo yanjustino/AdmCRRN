@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo Usuário", "RegisterAdmin", "Account") 
 </p>
 <table>
     <tr>
@@ -17,10 +17,14 @@
         <th>
             Email
         </th>
+         <th>
+            Nome da Instituição
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
@@ -29,9 +33,11 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+           @Html.DisplayFor(modelItem => item.NomeInstituicao)
+        </td>
+ 
+        <td>
+            @Html.ActionLink("Mudar Senha", "Edit", new { /* id=item.PrimaryKey */ }) |
         </td>
     </tr>
 }

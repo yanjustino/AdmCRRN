@@ -10,6 +10,7 @@ namespace AdmCRRN.Models.ViewModel
     {
         public string Nome { get; set; }
         public string Email { get; set; }
+        public string NomeInstituicao { get; set; }
 
         public UsuarioViewModel()
         {
@@ -21,8 +22,9 @@ namespace AdmCRRN.Models.ViewModel
             var usuario = Membership.GetUser(conta.IdUsuario);
             this.Nome = usuario.UserName;
             this.Email = usuario.Email;
+            this.NomeInstituicao = conta.Instituicao.Nome;
         }
-
+      
         public IEnumerable<UsuarioViewModel> CriarListaUsuarios(List<Conta> contas)
         {
             foreach (var conta in contas)

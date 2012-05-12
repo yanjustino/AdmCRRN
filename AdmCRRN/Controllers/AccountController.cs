@@ -100,11 +100,11 @@ namespace AdmCRRN.Controllers
         }
 
         [Authorize(Roles = "Super, Admin")]
-        public ActionResult RegisterAdmin(int id)
+        public ActionResult RegisterAdmin()
         {
             RegisterModel model = new RegisterModel()
             {
-                IdInstituicao = id,
+                IdInstituicao = ContaSession.InstituicaoDaConta().Id,
                 AccountType = AccountsType.Admin
             };
 

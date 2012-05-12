@@ -18,3 +18,13 @@ D:\cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.xml
 D:\cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\ResolveAssemblyReference.cache
 D:\cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.dll
 D:\cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll.config
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.dll
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.Tests.pdb
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.dll
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.dll
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\AdmCRRN.pdb
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.xml
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\ResolveAssemblyReference.cache
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.dll
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb
