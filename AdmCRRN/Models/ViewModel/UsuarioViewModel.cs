@@ -14,6 +14,11 @@ namespace AdmCRRN.Models.ViewModel
         public string Senha { get; private set; }
 
 
+        public UsuarioViewModel()
+        {
+
+        }
+
         public UsuarioViewModel(Conta conta)
         {
             var usuario = Membership.GetUser(conta.IdUsuario);

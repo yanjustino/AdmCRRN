@@ -116,19 +116,20 @@ namespace AdmCRRN.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
-                if (model.AccountType == AccountsType.Super)
-                    Roles.AddUserToRole(model.UserName, RegisterModel.SUPER);
-                else if (model.AccountType == AccountsType.Admin)
-                    Roles.AddUserToRole(model.UserName, RegisterModel.ADMIN);
+                if (createStatus != MembershipCreateStatus.Success)
+                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
                 else
-                    Roles.AddUserToRole(model.UserName, RegisterModel.USUARIO);
-
-                if (createStatus == MembershipCreateStatus.Success)
                 {
+                    if (model.AccountType == AccountsType.Super)
+                        Roles.AddUserToRole(model.UserName, RegisterModel.SUPER);
+                    else if (model.AccountType == AccountsType.Admin)
+                        Roles.AddUserToRole(model.UserName, RegisterModel.ADMIN);
+                    else
+                        Roles.AddUserToRole(model.UserName, RegisterModel.USUARIO);
+
                     Conta conta = new Conta();
                     conta.IdUsuario = (Guid)Membership.GetUser(model.UserName).ProviderUserKey;
                     conta.Instituicao = contexto.Instituicoes.Find(model.IdInstituicao);
@@ -136,10 +137,11 @@ namespace AdmCRRN.Controllers
                     contexto.Contas.Add(conta);
                     contexto.SaveChanges();
 
+                    var mail = new MailController();
+                    mail.NovoUsuario(conta);
+
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
             }
 
             // If we got this far, something failed, redisplay form
@@ -173,13 +175,9 @@ namespace AdmCRRN.Controllers
                 }
 
                 if (changePasswordSucceeded)
-                {
                     return RedirectToAction("ChangePasswordSuccess");
-                }
                 else
-                {
                     ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
             }
 
             // If we got this far, something failed, redisplay form

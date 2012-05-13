@@ -28,3 +28,9 @@ E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\EntityFramework.xml
 E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\ResolveAssemblyReference.cache
 E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.dll
 E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\obj\Debug\AdmCRRN.Tests.pdb
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.dll
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.dll
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.pdb
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.xml
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.pdb
+D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.xml
