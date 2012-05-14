@@ -18,21 +18,28 @@ namespace AdmCRRN.Controllers
         DataContext contexto = new DataContext();
 
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             var entidade = ContaSession.ContaNaSessao();
 
             List<Conta> contas = null;
             if (entidade == null)
                 contas = contexto.Contas.ToList();
-            else
-                contas = contexto.Contas.Where(e => e.Instituicao.Id == entidade.Instituicao.Id).ToList();
-
+            else 
+               contas = contexto.Contas.Where(e => e.Instituicao.Id == id).ToList();
+            
             var viewModel = new UsuarioViewModel();
             var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
             return View(usuarios);
         }
 
+       /* public ActionResult Index(List<Conta> contas)
+        {
+            var viewModel = new UsuarioViewModel();
+            var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
+            return View(usuarios);
+        }
+        */
         public ActionResult LogOn()
         {
             return View();

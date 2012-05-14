@@ -8,13 +8,25 @@
         http://asp.net/mvc</a>.
 </p>*@
 
+@if (ContaSession.UsuarioDoPerfilSuper())
+{ 
+     <h2>Usuario Adiministrador</h2>;
 
+}
+else
+{
+    if (@ContaSession.ContaNaSessao() != null) { 
+       <h2>@ContaSession.ContaNaSessao().Instituicao.Nome</h2>
+    }
+
+}
+    
 <ul>
 
     @if (ContaSession.ContaDoTipoCentro())
     {
         <li>@Html.ActionLink("Entidades", "Index", "Entidade")</li>
-        <li>@Html.ActionLink("Usuários", "Index", "Account")</li>
+        <li>@Html.ActionLink("Usuários", "Index", "Account",new {id =ContaSession.ContaNaSessao().Instituicao.Id},null )</li>
     }
     else if (ContaSession.ContaDoTipoEntidade())
     { 
@@ -23,8 +35,6 @@
     }
     else if (ContaSession.UsuarioDoPerfilSuper())
     {
-        <h2>Usuario Adiministrador</h2>;
-        
         <li>@Html.ActionLink("Centro Administrativo", "Index", "Centro")</li>
     }
 </ul>

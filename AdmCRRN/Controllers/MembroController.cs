@@ -12,10 +12,10 @@ namespace AdmCRRN.Controllers
     {
         DataContext contexto = new DataContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             var entidade = (Entidade)ContaSession.InstituicaoDaConta();
-            var entidades = contexto.Membros.Where(e => e.Entidade.Id == entidade.Id);
+            var entidades = contexto.Membros.Where(e => e.Entidade.Id == id );
             return View(entidades);
         }
 
