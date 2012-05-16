@@ -25,7 +25,7 @@ namespace AdmCRRN.Models.ViewModel
             this.Nome = usuario.UserName;
             this.Email = usuario.Email;
             this.NomeInstituicao = conta.Instituicao.Nome;
-            this.Senha = usuario.GetPassword();
+            this.Senha = usuario.ProviderUserKey.ToString();
         }
 
         public IEnumerable<UsuarioViewModel> CriarListaUsuarios(List<Conta> contas)

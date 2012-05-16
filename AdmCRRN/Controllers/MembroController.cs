@@ -7,14 +7,13 @@ using AdmCRRN.Models.Sessoes;
 
 namespace AdmCRRN.Controllers
 {
-    [Authorize(Roles="Usuario")]
+    [Authorize(Roles="Admin, Usuario")]
     public class MembroController : Controller
     {
         DataContext contexto = new DataContext();
 
         public ActionResult Index(int id)
         {
-            var entidade = (Entidade)ContaSession.InstituicaoDaConta();
             var entidades = contexto.Membros.Where(e => e.Entidade.Id == id );
             return View(entidades);
         }
