@@ -34,3 +34,9 @@ D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.pdb
 D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.xml
 D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.pdb
 D:\Projetos\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.xml
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.dll
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.dll
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.pdb
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.Mvc.xml
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.pdb
+E:\Desenvolvimento\Cocobit\AdmCRRN\AdmCRRN.Tests\bin\Debug\ActionMailer.Net.xml

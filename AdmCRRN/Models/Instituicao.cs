@@ -16,8 +16,8 @@ namespace AdmCRRN.Models
         [Required(ErrorMessage = "Informe o nome do Centro Administrativos")]
         public string Nome { get; set; }
 
-        [ValidacaoCNPJCPF]
-        [Required(ErrorMessage = "Informe o CNPJ")]
+        //[ValidacaoCNPJCPF]
+        //[Required(ErrorMessage = "Informe o CNPJ")]
         public string CNPJ { get; set; }
 
         public virtual Endereco Endereco { get; set; }

@@ -35,6 +35,7 @@ namespace AdmCRRN.Controllers
             return View(contexto.Membros.Find(id));
         }
 
+        [Authorize(Roles = "Usuario")]
         public ActionResult Create()
         {
             ViewBag.TipoMembro = new SelectList(new[] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString(), Selected=true },
@@ -44,7 +45,6 @@ namespace AdmCRRN.Controllers
 
             Membro model = new Membro();
             model.Endereco = new Endereco();
-            //model.Entidade = null;
             return View(model);
         }
 
@@ -56,18 +56,25 @@ namespace AdmCRRN.Controllers
                 if (ModelState.IsValid)
                 {
                     int idEntidade = ContaSession.InstituicaoDaConta().Id;
+
                     model.Entidade = contexto.Entidades.Find(idEntidade);
                     contexto.Membros.Add(model);
                     contexto.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { id = idEntidade });
                 }
+
+                ViewBag.TipoMembro = new SelectList(new[] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString(), Selected=true },
+                                                          new { Value=((int)TipoMembro.Congregado).ToString(), Text=TipoMembro.Congregado.ToString(), Selected=false },
+                                                          new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString(), Selected=true } },
+                                                      "Value", "Text", "Selected");
+
 
                 return View(model);
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -82,20 +89,22 @@ namespace AdmCRRN.Controllers
         {
             try
             {
+                int idEntidade = ContaSession.InstituicaoDaConta().Id;
+
                 if (ModelState.IsValid)
                 {
                     contexto.Entry(model).State = System.Data.EntityState.Modified;
                     contexto.Entry(model.Endereco).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { id = idEntidade });
                 }
 
-                return View();
+                return View(model);
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -109,11 +118,13 @@ namespace AdmCRRN.Controllers
         {
             try
             {
+                int idEntidade = ContaSession.InstituicaoDaConta().Id;
+
                 model = contexto.Membros.Find(model.Id);
                 contexto.Membros.Remove(model);
                 contexto.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = idEntidade });
             }
             catch
             {

@@ -1,0 +1,4 @@
+*mudar a senha do usuario
+*Corrigir voltar do index de Account
+*Criar conta de email para envio
+*Tratar erro de exclusão de entidade quando tem usuário

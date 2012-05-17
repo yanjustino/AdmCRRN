@@ -18,6 +18,13 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Tipo)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(e => e.Tipo, Model.ListaTiposEntidade())
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.CNPJ)
         </div>
         <div class="editor-field">

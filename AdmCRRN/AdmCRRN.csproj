@@ -75,7 +75,7 @@
     <Compile Include="Controllers\EntidadeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
-    <Compile Include="Controllers\MembroController.cs" />
+    <Compile Include="Migrations\MembroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

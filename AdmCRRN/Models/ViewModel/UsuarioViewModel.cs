@@ -12,6 +12,8 @@ namespace AdmCRRN.Models.ViewModel
         public string Email { get; set; }
         public string NomeInstituicao { get; set; }
         public string Senha { get; private set; }
+        public string TipoInstituicao { get; private set; }
+        public int IdInstituicao { get; set; }
 
 
         public UsuarioViewModel()
@@ -25,6 +27,12 @@ namespace AdmCRRN.Models.ViewModel
             this.Nome = usuario.UserName;
             this.Email = usuario.Email;
             this.NomeInstituicao = conta.Instituicao.Nome;
+            this.IdInstituicao = conta.Instituicao.Id;
+
+            this.TipoInstituicao = "Centro";
+            if (conta.Instituicao.GetType().BaseType == typeof(Entidade))
+                this.TipoInstituicao = "Entidade";
+
             this.Senha = usuario.ProviderUserKey.ToString();
         }
 

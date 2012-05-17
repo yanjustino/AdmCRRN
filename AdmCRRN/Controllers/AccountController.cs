@@ -33,13 +33,6 @@ namespace AdmCRRN.Controllers
             return View(usuarios);
         }
 
-       /* public ActionResult Index(List<Conta> contas)
-        {
-            var viewModel = new UsuarioViewModel();
-            var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
-            return View(usuarios);
-        }
-        */
         public ActionResult LogOn()
         {
             return View();
