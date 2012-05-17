@@ -9,6 +9,13 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<br />
+<p>
+    @using(Html.BeginForm("Pesquisar", "Membro", new { id = @Model.First().Entidade.Id })){
+    <input type="text" name="txtPesquisar" value=" " />
+    <input type="submit" name="btnPesquisar" value="Procurar" />
+    }
+</p>
 <div id="grid">
     @grid.GetHtml(
         columns: grid.Columns(

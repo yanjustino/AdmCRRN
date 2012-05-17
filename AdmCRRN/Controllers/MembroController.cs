@@ -7,15 +7,27 @@ using AdmCRRN.Models.Sessoes;
 
 namespace AdmCRRN.Controllers
 {
-    [Authorize(Roles="Admin, Usuario")]
+    [Authorize(Roles = "Admin, Usuario")]
     public class MembroController : Controller
     {
         DataContext contexto = new DataContext();
 
         public ActionResult Index(int id)
         {
-            var entidades = contexto.Membros.Where(e => e.Entidade.Id == id );
-            return View(entidades);
+            var membros = contexto.Membros.Where(e => e.Entidade.Id == id);
+            return View(membros);
+        }
+
+        [HttpPost]
+        public ActionResult Pesquisar(int id)
+        {
+            var text = Request.Form["txtPesquisar"].ToString().Trim();
+            var membros = contexto.Membros.Where(e => e.Entidade.Id == id && e.Nome.Contains(text));
+
+            if (membros.Count() == 0)
+                return RedirectToAction("Index", new { id = id });
+            else
+                return View("Index", membros);
         }
 
         public ActionResult Details(int id)
@@ -25,10 +37,10 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.TipoMembro = new SelectList( new [] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString(), Selected=true },
+            ViewBag.TipoMembro = new SelectList(new[] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString(), Selected=true },
                                                           new { Value=((int)TipoMembro.Congregado).ToString(), Text=TipoMembro.Congregado.ToString(), Selected=false },
-                                                          new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString(), Selected=true } }, 
-                                                  "Value", "Text", "Selected" );
+                                                          new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString(), Selected=true } },
+                                                  "Value", "Text", "Selected");
 
             Membro model = new Membro();
             model.Endereco = new Endereco();
