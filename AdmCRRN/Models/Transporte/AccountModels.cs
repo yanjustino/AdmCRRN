@@ -9,6 +9,7 @@ namespace AdmCRRN.Models.Transporte
 {
     public class ChangePasswordModel
     {
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]

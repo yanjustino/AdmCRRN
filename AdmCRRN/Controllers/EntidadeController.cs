@@ -112,6 +112,20 @@ namespace AdmCRRN.Controllers
             try
             {
                 model = contexto.Entidades.Find(model.Id);
+
+                if (model.Membros.Count > 0)
+                {
+                    ModelState.AddModelError("", "Não é possível excluir uma entidade com membros cadastrados.");
+                    return View(model);
+                }
+
+                if (model.Contas.Count > 0)
+                {
+                    ModelState.AddModelError("", "Não é possível excluir uma entidade com usuários associadas a ela.");
+                    return View(model);
+                }
+
+
                 contexto.Entidades.Remove(model);
                 contexto.SaveChanges();
 
@@ -119,7 +133,7 @@ namespace AdmCRRN.Controllers
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
     }

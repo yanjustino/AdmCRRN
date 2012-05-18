@@ -17,7 +17,6 @@ namespace AdmCRRN.Controllers
     {
         DataContext contexto = new DataContext();
 
-
         public ActionResult Index(int id)
         {
             var entidade = ContaSession.ContaNaSessao();

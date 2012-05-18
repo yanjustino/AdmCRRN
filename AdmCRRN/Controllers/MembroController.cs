@@ -43,8 +43,11 @@ namespace AdmCRRN.Controllers
                                                           new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString(), Selected=true } },
                                                   "Value", "Text", "Selected");
 
+            int idEntidade = ContaSession.InstituicaoDaConta().Id;
+
             Membro model = new Membro();
             model.Endereco = new Endereco();
+            model.Entidade = contexto.Entidades.Find(idEntidade);
             return View(model);
         }
 

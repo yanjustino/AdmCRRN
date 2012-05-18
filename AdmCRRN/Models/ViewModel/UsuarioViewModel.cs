@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using AdmCRRN.Models.Transporte;
 
 namespace AdmCRRN.Models.ViewModel
 {
@@ -14,6 +15,8 @@ namespace AdmCRRN.Models.ViewModel
         public string Senha { get; private set; }
         public string TipoInstituicao { get; private set; }
         public int IdInstituicao { get; set; }
+        public int IdConta { get; set; }
+        public ChangePasswordModel ChangePassword { get; set; }
 
 
         public UsuarioViewModel()
@@ -34,6 +37,8 @@ namespace AdmCRRN.Models.ViewModel
                 this.TipoInstituicao = "Entidade";
 
             this.Senha = usuario.ProviderUserKey.ToString();
+
+            this.ChangePassword = new ChangePasswordModel();
         }
 
         public IEnumerable<UsuarioViewModel> CriarListaUsuarios(List<Conta> contas)
