@@ -438,6 +438,80 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="d0781f76-8e54-41c0-a901-faf4a7837475"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5b484824-c1e9-43ad-89b1-9332813ee901"
+              LastKnownName="Tesoreiro"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d0e1e576-e0e3-49f1-b730-02184917f514"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c06f2740-786f-4508-bc92-2cdccae009be"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="7eaf2599-681b-43a1-b225-03922b475cba"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="7cfdd971-b5e5-4438-aef1-0cfe65180d58"
+              LastKnownName="Dirigente"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1fec1da9-181d-4a75-bfa2-946e1342dd60"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="28fcea95-c9e5-4b36-a667-a01a7eaaf3a2"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -585,6 +659,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="2394b555-85da-46d9-b534-e87762a46409"
+            isSubstitutable="false">
+            <classMoniker
+              Id="a7200fb1-14c2-40ba-a8fb-4da54b42028d"
+              LastKnownName="Pessoa"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association
             Id="2d59c22c-cb9f-42ab-99e0-15090b9a1aa3"
@@ -809,6 +893,110 @@
                   isDerivedUnion="false"
                   aggregation="None"
                   isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a7200fb1-14c2-40ba-a8fb-4da54b42028d"
+        name="Pessoa"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7cfdd971-b5e5-4438-aef1-0cfe65180d58"
+        name="Dirigente"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="b6fd38f0-1e9d-43a8-a356-155e24645ca2"
+            isSubstitutable="false">
+            <classMoniker
+              Id="a7200fb1-14c2-40ba-a8fb-4da54b42028d"
+              LastKnownName="Pessoa"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5b484824-c1e9-43ad-89b1-9332813ee901"
+        name="Tesoreiro"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="38105fd1-7a35-45dd-a4a9-f4423633a575"
+            isSubstitutable="false">
+            <classMoniker
+              Id="a7200fb1-14c2-40ba-a8fb-4da54b42028d"
+              LastKnownName="Pessoa"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="39549418-83f9-482d-aa29-c2fdd778a96a"
+        name="Secretário"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="c8a3a263-c531-41f7-a96d-764fa73fbb63"
+            isSubstitutable="false">
+            <classMoniker
+              Id="a7200fb1-14c2-40ba-a8fb-4da54b42028d"
+              LastKnownName="Pessoa"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="246d5317-a291-44b7-9419-4528ccf683d6"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="718b12d3-265b-4b06-8dbe-4211104afcf1"
+              LastKnownName="Entidade"
+              LastKnownLocation="AdmCRRN.Documentacao.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="27c1d485-1f90-4160-be27-408010dd5d03"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6b580d4f-dee5-4d6d-9ce3-7feb68516906"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>

@@ -161,6 +161,38 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="1eb0292a-a8cf-4814-9368-8ee2aa026b5b" />
           </association>
+          <association Id="da09201e-e28d-431f-aea4-e79e2bf53d0f" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="72c105c9-5e5f-458d-bb0a-e62d7a5ae6d2" LastKnownName="Tesoreiro" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e14701e2-662c-489e-b6a4-a1cfcfefbf2c" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d0e1e576-e0e3-49f1-b730-02184917f514" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="565c024d-1c40-4dac-8859-b3a7d2676431" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c06f2740-786f-4508-bc92-2cdccae009be" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d0781f76-8e54-41c0-a901-faf4a7837475" />
+          </association>
+          <association Id="28920667-cd69-4063-947c-6a54f77d4810" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="38c752f0-0ca3-4d3e-9725-8d74cb57fdeb" LastKnownName="Dirigente" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0e1c316f-91dc-4809-ad4f-ca2cf666f18d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1fec1da9-181d-4a75-bfa2-946e1342dd60" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f2f829d8-2fc5-4542-966c-5ac96d058401" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="28fcea95-c9e5-4b36-a667-a01a7eaaf3a2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7eaf2599-681b-43a1-b225-03922b475cba" />
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property Id="e458c799-543b-4786-b7f6-9a7fc3a30c48" name="CNPJ" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -181,6 +213,12 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="92ec0f1d-7139-456b-87fc-0b835d61a55b" name="Membro" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="e5a1bf50-fa4d-4c49-9a23-da219a5bfe40" />
+        <generalsInternal>
+          <generalization Id="ceaea9eb-bb00-403e-bc4c-b94a661b8206" isSubstitutable="false">
+            <classMoniker Id="8dc2973e-0e84-4564-a92a-66af740925c1" LastKnownName="Pessoa" />
+            <elementDefinition Id="2394b555-85da-46d9-b534-e87762a46409" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association Id="9fe9497a-4465-4891-8cd1-8c06f57a1347" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
             <classMoniker Id="4b193b46-1c9b-4876-aa79-bcf963fcef28" LastKnownName="Endereco" />
@@ -285,6 +323,62 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="6dbdee98-de5d-433f-a775-a7a20355e69d" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8dc2973e-0e84-4564-a92a-66af740925c1" name="Pessoa" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a7200fb1-14c2-40ba-a8fb-4da54b42028d" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="38c752f0-0ca3-4d3e-9725-8d74cb57fdeb" name="Dirigente" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7cfdd971-b5e5-4438-aef1-0cfe65180d58" />
+        <generalsInternal>
+          <generalization Id="3f687031-55df-4075-969e-786e86c3633c" isSubstitutable="false">
+            <classMoniker Id="8dc2973e-0e84-4564-a92a-66af740925c1" LastKnownName="Pessoa" />
+            <elementDefinition Id="b6fd38f0-1e9d-43a8-a356-155e24645ca2" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="72c105c9-5e5f-458d-bb0a-e62d7a5ae6d2" name="Tesoreiro" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5b484824-c1e9-43ad-89b1-9332813ee901" />
+        <generalsInternal>
+          <generalization Id="08f4265f-e079-4253-8184-e598962b4431" isSubstitutable="false">
+            <classMoniker Id="8dc2973e-0e84-4564-a92a-66af740925c1" LastKnownName="Pessoa" />
+            <elementDefinition Id="38105fd1-7a35-45dd-a4a9-f4423633a575" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="77863bc4-b429-4587-bb26-90d42d5331cc" name="Secretário" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="39549418-83f9-482d-aa29-c2fdd778a96a" />
+        <generalsInternal>
+          <generalization Id="1f30a29b-298f-41f0-85c4-4b64c91c6a25" isSubstitutable="false">
+            <classMoniker Id="8dc2973e-0e84-4564-a92a-66af740925c1" LastKnownName="Pessoa" />
+            <elementDefinition Id="c8a3a263-c531-41f7-a96d-764fa73fbb63" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association Id="029055c8-9abb-43c7-8322-6a79d04e2184" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="27bf68bd-47d3-4606-9c64-f30e7252e8db" LastKnownName="Entidade" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8bf36adc-6dee-42ec-b733-94f5c635c319" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="27c1d485-1f90-4160-be27-408010dd5d03" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="835c2db6-1811-48f6-a079-f3cdb8deb683" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6b580d4f-dee5-4d6d-9ce3-7feb68516906" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="246d5317-a291-44b7-9419-4528ccf683d6" />
           </association>
         </targetEnds>
       </class>
