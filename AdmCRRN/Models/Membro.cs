@@ -12,18 +12,8 @@ namespace AdmCRRN.Models
     }
 
     [Table("Membros")]
-    public class Membro
+    public class Membro : Pessoa
     {
-        public int Id { get; set; }
-
-        [ValidacaoCNPJCPF]
-        [Required(ErrorMessage = "Informe o CPF")]
-        public string CPF { get; set; }
-
-        public string Nome { get; set; }
-
-        public virtual Entidade Entidade { get; set; }
-        public virtual Endereco Endereco { get; set; }
         public int Tipo { get; set; }
         public virtual TipoMembro NomeTipoMembro { get { return (TipoMembro)this.Tipo; } }
     }

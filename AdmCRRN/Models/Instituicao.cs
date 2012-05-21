@@ -12,6 +12,7 @@ namespace AdmCRRN.Models
     public abstract class Instituicao
     {
         public int Id { get; set; }
+        public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Informe o nome do Centro Administrativos")]
         public string Nome { get; set; }

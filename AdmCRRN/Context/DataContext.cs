@@ -10,7 +10,11 @@ namespace AdmCRRN.Context
         public DbSet<Membro> Membros { get; set; }
         public DbSet<Conta> Contas { get; set; }
         public DbSet<Instituicao> Instituicoes { get; set; }
-        
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Dirigente> Dirigentes { get; set; }
+        public DbSet<Tesoureiro> Tesoureiros { get; set; }
+        public DbSet<Secretario> Secretarios { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
