@@ -23,9 +23,9 @@ namespace AdmCRRN.Models
         public virtual Centro Centro { get; set; }
         public virtual List<Membro> Membros { get; set; }
         public virtual string NomeTipoEntidade { get { return ParseNomeEntidade(); } }
-        public virtual Dirigente Dirigente { get; set; }
-        public virtual Secretario Secreateio { get; set; }
-        public virtual Tesoureiro Tesoureiro { get; set; }
+        public virtual Membro Dirigente { get; set; }
+        public virtual Membro Secreateio { get; set; }
+        public virtual Membro Tesoureiro { get; set; }
 
         public SelectList ListaTiposEntidade()
         {

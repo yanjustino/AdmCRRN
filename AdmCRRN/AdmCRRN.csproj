@@ -85,14 +85,10 @@
     <Compile Include="Models\Atributos\ValidacaoEmailAttribute.cs" />
     <Compile Include="Models\Centro.cs" />
     <Compile Include="Models\Conta.cs" />
-    <Compile Include="Models\Dirigente.cs" />
     <Compile Include="Models\Entidade.cs" />
     <Compile Include="Models\Membro.cs" />
     <Compile Include="Models\Instituicao.cs" />
-    <Compile Include="Models\Pessoa.cs" />
-    <Compile Include="Models\Secretario.cs" />
     <Compile Include="Models\Sessoes\ContaSession.cs" />
-    <Compile Include="Models\Tesoureiro.cs" />
     <Compile Include="Models\Transporte\AccountModels.cs" />
     <Compile Include="Models\Transporte\EntidadeDTO.cs" />
     <Compile Include="Models\ViewModel\UsuarioViewModel.cs" />
