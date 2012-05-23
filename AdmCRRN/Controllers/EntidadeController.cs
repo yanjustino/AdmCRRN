@@ -6,6 +6,7 @@ using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
 using AdmCRRN.Models.Sessoes;
 using AdmCRRN.Models.Transporte;
+using System;
 
 namespace AdmCRRN.Controllers
 {
@@ -54,6 +55,9 @@ namespace AdmCRRN.Controllers
         [HttpPost]
         public ActionResult Create(Entidade model)
         {
+            
+            
+            
             try
             {
                 if (ModelState.IsValid)
@@ -63,13 +67,26 @@ namespace AdmCRRN.Controllers
                     contexto.Entidades.Add(model);
                     contexto.SaveChanges();
 
+                    model.Dirigente.Entidade = contexto.Entidades.Find(model.Id);
+                    model.Dirigente.Endereco = contexto.Entidades.Find(model.Id).Endereco;
+
+                    model.Secretario.Entidade = contexto.Entidades.Find(model.Id);
+                    model.Secretario.Endereco = contexto.Entidades.Find(model.Id).Endereco;
+
+                    model.Tesoureiro.Entidade = contexto.Entidades.Find(model.Id);
+                    model.Tesoureiro.Endereco = contexto.Entidades.Find(model.Id).Endereco;
+
+                    contexto.Entry(model).State = System.Data.EntityState.Modified;
+                    contexto.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
 
                 return View(model);
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View(model);
             }
         }
