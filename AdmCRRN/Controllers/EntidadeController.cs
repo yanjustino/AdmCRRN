@@ -49,15 +49,13 @@ namespace AdmCRRN.Controllers
         {
             Entidade model = new Entidade();
             model.Endereco = new Endereco();
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Create(Entidade model)
         {
-            
-            
-            
             try
             {
                 if (ModelState.IsValid)
@@ -68,13 +66,8 @@ namespace AdmCRRN.Controllers
                     contexto.SaveChanges();
 
                     model.Dirigente.Entidade = contexto.Entidades.Find(model.Id);
-                    model.Dirigente.Endereco = contexto.Entidades.Find(model.Id).Endereco;
-
                     model.Secretario.Entidade = contexto.Entidades.Find(model.Id);
-                    model.Secretario.Endereco = contexto.Entidades.Find(model.Id).Endereco;
-
                     model.Tesoureiro.Entidade = contexto.Entidades.Find(model.Id);
-                    model.Tesoureiro.Endereco = contexto.Entidades.Find(model.Id).Endereco;
 
                     contexto.Entry(model).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();
