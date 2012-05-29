@@ -121,7 +121,7 @@ namespace AdmCRRN.Controllers
         {
             try
             {
-                int idEntidade = ContaSession.InstituicaoDaConta().Id;
+                int idEntidade = model.Id;
 
                 model = contexto.Membros.Find(model.Id);
                 contexto.Membros.Remove(model);
@@ -131,7 +131,7 @@ namespace AdmCRRN.Controllers
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
     }

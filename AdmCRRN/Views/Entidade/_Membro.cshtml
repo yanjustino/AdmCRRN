@@ -28,23 +28,25 @@
         @Html.EditorFor(model => model.CPF, "", cargo + ".CPF")
         @Html.ValidationMessageFor(model => model.CPF)
     </div>
+
     <div class="editor-label">
         @Html.HiddenFor(model => model.Tipo)
     </div>
     <div class="editor-field">
-        @Html.HiddenFor(model => model.Tipo, cargo + ".Tipo")
+@*        @Html.HiddenFor(model => model.Tipo)
+*@        <input type="hidden" name="@(cargo).Tipo" value="@Model.Tipo"/>
         @Html.ValidationMessageFor(model => model.Tipo)
     </div>
+
     <div class="editor-label">
         @Html.HiddenFor(model => model.Cargo)
     </div>
     <div class="editor-field">
-        @Html.HiddenFor(model => model.Cargo, cargo + ".Cargo")
+@*        @Html.HiddenFor(model => model.Cargo)
+*@        <input type="hidden" name="@(cargo).Cargo" value="@Model.Cargo"/>
         @Html.ValidationMessageFor(model => model.Cargo)
     </div>
 
-    @*    @Html.Partial("~/Views/Endereco/_Edit.cshtml", Model.Endereco)*@
-     @Html.Partial("~/Views/Endereco/_Edit.cshtml", Model.Endereco)
     <fieldset>
         <legend>Endereco</legend>
         <div class="editor-label">

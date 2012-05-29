@@ -86,7 +86,13 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(contexto.Entidades.Find(id));
+            var entidade = contexto.Entidades.Find(id);
+            var membros = contexto.Membros.Where(x => x.Entidade.Id == id).ToList();
+            ViewBag.Dirigentes = new SelectList(membros, "Id", "Nome", entidade.Dirigente.Id);
+            ViewBag.Secretarios = new SelectList(membros, "Id", "Nome", entidade.Secretario.Id);
+            ViewBag.Tesoureiros = new SelectList(membros, "Id", "Nome", entidade.Tesoureiro.Id);
+     
+            return View(entidade);
         }
 
         [HttpPost]
@@ -96,18 +102,30 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var dirigente = contexto.Membros.Find(model.Dirigente.Id);
+                    var tesoureiro = contexto.Membros.Find(model.Tesoureiro.Id);
+                    var secreatario = contexto.Membros.Find(model.Secretario.Id);
+                    
+                    model.Dirigente = dirigente;
+                    model.Secretario = secreatario;
+                    model.Tesoureiro = tesoureiro;
+
                     contexto.Entry(model).State = System.Data.EntityState.Modified;
+                    contexto.Entry(model.Secretario).State = System.Data.EntityState.Modified;
+                    contexto.Entry(model.Tesoureiro).State = System.Data.EntityState.Modified;
+                    contexto.Entry(model.Dirigente).State = System.Data.EntityState.Modified;
                     contexto.Entry(model.Endereco).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
 
-                return View();
+                return View(model);
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+                return View(model);
             }
         }
 

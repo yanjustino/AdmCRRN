@@ -26,8 +26,8 @@ namespace AdmCRRN.Models
         public string Nome { get; set; }
         public string Telefone { get; set; }
 
-        [ValidacaoCNPJCPF]
-        [Required(ErrorMessage = "Informe o CPF")]
+       // [ValidacaoCNPJCPF]
+       // [Required(ErrorMessage = "Informe o CPF")]
         public string CPF { get; set; }
 
 
