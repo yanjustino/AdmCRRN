@@ -19,8 +19,22 @@
     <div class="display-label">Nome</div>
     <div class="display-field">@Model.Nome</div>
 
-    @Html.Partial("~/Views/Endereco/_Details.cshtml", Model.Endereco)
+    <div class="display-label">Emencipação</div>
+    <div class="display-field">@Model.DataEmancipacao</div>
 
+    <div class="display-label">Fundação</div>
+    <div class="display-field">@Model.DataFundacao</div>
+
+    <div class="display-label">Dirigente</div>
+    <div class="display-field">@Model.Dirigente.Nome</div>
+
+    <div class="display-label">Tesoreiro</div>
+    <div class="display-field">@Model.Tesoureiro.Nome</div>
+
+    <div class="display-label">Secretário</div>
+    <div class="display-field">@Model.Secretario.Nome</div>
+
+    @Html.Partial("~/Views/Endereco/_Details.cshtml", Model.Endereco)
 
 </fieldset>
 <p>

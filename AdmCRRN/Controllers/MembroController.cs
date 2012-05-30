@@ -121,9 +121,9 @@ namespace AdmCRRN.Controllers
         {
             try
             {
-                int idEntidade = model.Id;
-
                 model = contexto.Membros.Find(model.Id);
+                int idEntidade = model.Entidade.Id;
+
                 contexto.Membros.Remove(model);
                 contexto.SaveChanges();
 

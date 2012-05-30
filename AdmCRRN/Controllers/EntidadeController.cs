@@ -89,11 +89,20 @@ namespace AdmCRRN.Controllers
             var entidade = contexto.Entidades.Where(e => e.Id == id).FirstOrDefault();
             var membros = contexto.Membros.Where(x => x.Entidade.Id == id);
 
-            ViewBag.Dirigentes = new SelectList(membros, "Id", "Nome", entidade.Dirigente.Id);
-            ViewBag.Tesoureiros = new SelectList(membros, "Id", "Nome", entidade.Tesoureiro.Id);
-            ViewBag.Secretarios = new SelectList(membros, "Id", "Nome", entidade.Secretario.Id);
+            CriarViewBagsEdit(entidade, membros);
      
             return View(entidade);
+        }
+
+        private void CriarViewBagsEdit(Entidade entidade, IQueryable<Membro> membros)
+        {
+            int idDirigente = entidade.Dirigente == null ? 0 : entidade.Dirigente.Id;
+            int idSecretario = entidade.Secretario == null ? 0 : entidade.Secretario.Id;
+            int idTesoreiro = entidade.Tesoureiro == null ? 0 : entidade.Tesoureiro.Id;
+            
+            ViewBag.Dirigentes = new SelectList(membros, "Id", "Nome", idDirigente);
+            ViewBag.Tesoureiros = new SelectList(membros, "Id", "Nome", idTesoreiro);
+            ViewBag.Secretarios = new SelectList(membros, "Id", "Nome", idSecretario);
         }
 
         [HttpPost]
