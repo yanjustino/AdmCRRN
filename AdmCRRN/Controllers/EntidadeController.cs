@@ -86,11 +86,12 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Edit(int id)
         {
-            var entidade = contexto.Entidades.Find(id);
-            var membros = contexto.Membros.Where(x => x.Entidade.Id == id).ToList();
+            var entidade = contexto.Entidades.Where(e => e.Id == id).FirstOrDefault();
+            var membros = contexto.Membros.Where(x => x.Entidade.Id == id);
+
             ViewBag.Dirigentes = new SelectList(membros, "Id", "Nome", entidade.Dirigente.Id);
-            ViewBag.Secretarios = new SelectList(membros, "Id", "Nome", entidade.Secretario.Id);
             ViewBag.Tesoureiros = new SelectList(membros, "Id", "Nome", entidade.Tesoureiro.Id);
+            ViewBag.Secretarios = new SelectList(membros, "Id", "Nome", entidade.Secretario.Id);
      
             return View(entidade);
         }
@@ -102,19 +103,18 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var dirigente = contexto.Membros.Find(model.Dirigente.Id);
-                    var tesoureiro = contexto.Membros.Find(model.Tesoureiro.Id);
-                    var secreatario = contexto.Membros.Find(model.Secretario.Id);
-                    
-                    model.Dirigente = dirigente;
-                    model.Secretario = secreatario;
-                    model.Tesoureiro = tesoureiro;
 
-                    contexto.Entry(model).State = System.Data.EntityState.Modified;
-                    contexto.Entry(model.Secretario).State = System.Data.EntityState.Modified;
-                    contexto.Entry(model.Tesoureiro).State = System.Data.EntityState.Modified;
-                    contexto.Entry(model.Dirigente).State = System.Data.EntityState.Modified;
-                    contexto.Entry(model.Endereco).State = System.Data.EntityState.Modified;
+                    var entidade = contexto.Entidades.Find(model.Id);
+                    var secretario = contexto.Membros.Where(d => d.Id == model.Secretario.Id).First();
+                    var dirigente = contexto.Membros.Where(s => s.Id == model.Dirigente.Id).First();
+                    var tesoureiro = contexto.Membros.Where(t => t.Id == model.Tesoureiro.Id).First();
+
+                    contexto.Entry(entidade).CurrentValues.SetValues(model);
+                    contexto.Entry(entidade.Endereco).CurrentValues.SetValues(model.Endereco);
+                    entidade.Secretario = secretario;
+                    entidade.Dirigente = dirigente;
+                    entidade.Tesoureiro = tesoureiro;
+
                     contexto.SaveChanges();
 
                     return RedirectToAction("Index");
