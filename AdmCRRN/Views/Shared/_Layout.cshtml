@@ -24,11 +24,16 @@
                 </ul>
             </nav>
         </header>
-        <section id="main">
-            @RenderBody()
-        </section>
-        <footer>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                </div>
+                <div class="span10">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer>
         </footer>
-    </div>
+        </div>
 </body>
 </html>

@@ -10,73 +10,67 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+    <h2>
+        Cadastrar nova entidade</h2>
+    <br />
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#" data-toggle="#tab1"><i class="icon-home"></i>Dados da
+            entidade</a></li>
+        <li><a href="#" data-toggle="#tab2"><i class="icon-user"></i>Dirigente</a></li>
+        <li><a href="#" data-toggle="#tab3"><i class="icon-bullhorn"></i>Secretário</a></li>
+        <li><a href="#" data-toggle="#tab4"><i class="icon-lock"></i>Tesoureiro</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Tipo)
             </div>
-            <div class="span10">
-                <h2>Cadastrar nova entidade</h2>
-                <br />
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#" data-toggle="#tab1"><i class="icon-home"></i> Dados da entidade</a></li>
-                    <li><a href="#" data-toggle="#tab2"><i class="icon-user"></i> Dirigente</a></li>
-                    <li><a href="#" data-toggle="#tab3"><i class="icon-bullhorn"></i> Secretário</a></li>
-                    <li><a href="#" data-toggle="#tab4"><i class="icon-lock"></i> Tesoureiro</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab1">
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Tipo)
-                        </div>
-                        <div class="editor-field">
-                            @Html.DropDownListFor(e => e.Tipo, Model.ListaTiposEntidade())
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.CNPJ)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.CNPJ)
-                            @Html.ValidationMessageFor(model => model.CNPJ)
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Nome)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Nome)
-                            @Html.ValidationMessageFor(model => model.Nome)
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.DataEmancipacao)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.DataEmancipacao)
-                            @Html.ValidationMessageFor(model => model.DataEmancipacao)
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.DataFundacao)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.DataFundacao)
-                            @Html.ValidationMessageFor(model => model.DataFundacao)
-                        </div>
-                        @Html.Partial("~/Views/Endereco/_Edit.cshtml", Model.Endereco)
-                    </div>
-                    <div class="tab-pane" id="tab2">
-                        @Html.Partial("~/Views/Entidade/_Membro.cshtml", new Membro() { Cargo = 0, Endereco = new Endereco() })
-                    </div>
-                    <div class="tab-pane" id="tab3">
-                        @Html.Partial("~/Views/Entidade/_Membro.cshtml", new Membro() { Cargo = 1, Endereco = new Endereco() })
-                    </div>
-                    <div class="tab-pane" id="tab4">
-                        @Html.Partial("~/Views/Entidade/_Membro.cshtml", new Membro() { Cargo = 2, Endereco = new Endereco() })
-                    </div>
-                </div>
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
+            <div class="editor-field">
+                @Html.DropDownListFor(e => e.Tipo, Model.ListaTiposEntidade())
             </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CNPJ)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CNPJ)
+                @Html.ValidationMessageFor(model => model.CNPJ)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nome)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DataEmancipacao)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DataEmancipacao)
+                @Html.ValidationMessageFor(model => model.DataEmancipacao)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DataFundacao)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DataFundacao)
+                @Html.ValidationMessageFor(model => model.DataFundacao)
+            </div>
+            @Html.Partial("~/Views/Endereco/_Edit.cshtml", Model.Endereco)
+        </div>
+        <div class="tab-pane" id="tab2">
+            @Html.Partial("~/Views/Entidade/_Membro.cshtml", new Membro() { Cargo = 0, Endereco = new Endereco() })
+        </div>
+        <div class="tab-pane" id="tab3">
+            @Html.Partial("~/Views/Entidade/_Membro.cshtml", new Membro() { Cargo = 1, Endereco = new Endereco() })
+        </div>
+        <div class="tab-pane" id="tab4">
+            @Html.Partial("~/Views/Entidade/_Membro.cshtml", new Membro() { Cargo = 2, Endereco = new Endereco() })
         </div>
     </div>
+    <p>
+        <input type="submit" value="Create" />
+    </p>
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
