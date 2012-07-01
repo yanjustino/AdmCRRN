@@ -32,17 +32,10 @@
 
             <div class="row-fluid">
                 <div class="span3">
-                    <ul class="nav nav-tabs nav-stacked">
-                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
-                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
-                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
-                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
-                        @if (@entidade != null)
-                        { 
-                            <li><a><i class="icon-user"></i>@entidade.Dirigente.Nome</a></li>
-                            <li><a><i class="icon-user"></i>@entidade.Tesoureiro.Nome</a></li>
-                            <li><a><i class="icon-user"></i>@entidade.Secretario.Nome</a></li>
-                        }
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a><i class="icon-user icon-white"></i> @User.Identity.Name</a></li>
+                        <li class="active"><a><i class="icon-envelope icon-white"></i> @ContaSession.UsuarioMemberShip().Email</a></li>
+                        <li class="active"><a><i class="icon-comment icon-white"></i> @ContaSession.UsuarioMemberShip().LastLoginDate</a></li>
                     </ul>
                 </div>
                 <div class="span9">
