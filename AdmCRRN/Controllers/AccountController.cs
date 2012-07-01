@@ -21,14 +21,18 @@ namespace AdmCRRN.Controllers
         {
             var entidade = ContaSession.ContaNaSessao();
 
-            List<Conta> contas = null;
-            if (entidade == null)
-                contas = contexto.Contas.ToList();
-            else 
-               contas = contexto.Contas.Where(e => e.Instituicao.Id == id).ToList();
-            
+            List<Conta> contas = entidade == null ? 
+                                 contexto.Contas.ToList() :
+                                 contexto.Contas.Where(e => e.Instituicao.Id == id).ToList();
+
             var viewModel = new UsuarioViewModel();
             var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
+            var tipoInstituicao = viewModel.TipoInstituicao(contas.First()).ToLower();
+
+            ViewBag.TextoLink = tipoInstituicao == "centro" ? "Novo Usuário administrador" : "Novo Usuário da Entidade";
+            ViewBag.ActionLink = tipoInstituicao == "centro" ? "RegisterAdmin" : "Register";
+            ViewBag.routeValue = tipoInstituicao == "centro" ? new { id = id } : new { id = contas.First().Instituicao.Id };
+
             return View(usuarios);
         }
 

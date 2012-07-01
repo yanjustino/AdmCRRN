@@ -16,23 +16,24 @@ namespace AdmCRRN.Models
     [Table("Entidades")]
     public class Entidade : Instituicao
     {
+        public int Tipo { get; set; }
+        public string CaminhoImagem { get; set; }
+        public virtual Centro Centro { get; set; }
         public DateTime DataFundacao { get; set; }
         public DateTime DataEmancipacao { get; set; }
-        public string CaminhoImagem { get; set; }
-        public int Tipo { get; set; }
-        public virtual Centro Centro { get; set; }
-        public virtual List<Membro> Membros { get; set; }
-        public virtual string NomeTipoEntidade { get { return ParseNomeEntidade(); } }
         public virtual Membro Dirigente { get; set; }
         public virtual Membro Secretario { get; set; }
         public virtual Membro Tesoureiro { get; set; }
+        public virtual List<Membro> Membros { get; set; }
+        public virtual string NomeTipoEntidade { get { return ParseNomeEntidade(); } }
 
         public SelectList ListaTiposEntidade()
         {
-            return new SelectList(new[] { new { Value=((int)TipoEntidade.Pregacao).ToString(), Text="Ponto de Pregação", Selected=true },
-                                                          new { Value=((int)TipoEntidade.Congregacao).ToString(), Text="Congregação", Selected=false },
-                                                          new { Value=((int)TipoEntidade.Igreja).ToString(), Text="Igreja", Selected=true } },
-                                                  "Value", "Text", "Selected");
+            return new SelectList(new[] { 
+                new { Value=((int)TipoEntidade.Pregacao).ToString(), Text="Ponto de Pregação", Selected=true },
+                new { Value=((int)TipoEntidade.Congregacao).ToString(), Text="Congregação", Selected=false },
+                new { Value=((int)TipoEntidade.Igreja).ToString(), Text="Igreja", Selected=true } },
+                "Value", "Text", "Selected");
         }
 
         private string ParseNomeEntidade()

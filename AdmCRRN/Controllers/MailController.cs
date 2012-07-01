@@ -17,7 +17,7 @@ namespace AdmCRRN.Controllers
         [Authorize(Roles = "Super, Admin")]
         public EmailResult NovoUsuario(Conta conta)
         {
-            var usuario = new UsuarioViewModel(conta);
+            var usuario = new Usuario(conta);
 
             To.Add( usuario.Email );
             Subject = "Adm CRRN: Cadastro de Conta do Usuário";
