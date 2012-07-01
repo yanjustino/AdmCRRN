@@ -27,7 +27,7 @@ namespace AdmCRRN.Controllers
 
             var viewModel = new UsuarioViewModel();
             var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
-            var tipoInstituicao = viewModel.TipoInstituicao(contas.First()).ToLower();
+            var tipoInstituicao = viewModel.TipoInstituicao(contas.FirstOrDefault());
 
             ViewBag.TextoLink = tipoInstituicao == "centro" ? "Novo Usuário administrador" : "Novo Usuário da Entidade";
             ViewBag.ActionLink = tipoInstituicao == "centro" ? "RegisterAdmin" : "Register";

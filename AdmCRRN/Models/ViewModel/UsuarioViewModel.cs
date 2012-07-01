@@ -11,9 +11,12 @@ namespace AdmCRRN.Models.ViewModel
     {
         public string TipoInstituicao(Conta conta)
         {
+            if (conta == null)
+                return "centro";
+
             return conta.Instituicao.GetType().BaseType == typeof(Entidade) ?
-                "Entidade" :
-                "Centro";
+                "entidade" :
+                "centro";
         }
         
         public IEnumerable<Usuario> CriarListaUsuarios(List<Conta> contas)

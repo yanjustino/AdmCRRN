@@ -1,4 +1,5 @@
-﻿@using AdmCRRN.Models.Sessoes
+﻿@using AdmCRRN.Models
+@using AdmCRRN.Models.Sessoes
 @using AdmCRRN.Models.Transporte
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
     <style type="text/css">
         body
         {
-            padding-top: 60px;
+            padding-top: 10px;
             padding-bottom: 40px;
         }
         .sidebar-nav
@@ -23,6 +24,40 @@
 </head>
 <body>
     <div class="container-fluid">
+        @if (!ContaSession.UsuarioDoPerfilSuper())
+        {
+            var instituicao = ContaSession.ContaNaSessao().Instituicao;
+            var endereco = ContaSession.ContaNaSessao().Instituicao.Endereco;
+            var entidade = @ContaSession.ContaDoTipoEntidade() ? (Entidade)instituicao : null;
+
+            <div class="row-fluid">
+                <div class="span3">
+                    <ul class="nav nav-tabs nav-stacked">
+                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
+                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
+                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
+                        <li><a><i class="icon-user"></i>@User.Identity.Name</a></li>
+                        @if (@entidade != null)
+                        { 
+                            <li><a><i class="icon-user"></i>@entidade.Dirigente.Nome</a></li>
+                            <li><a><i class="icon-user"></i>@entidade.Tesoureiro.Nome</a></li>
+                            <li><a><i class="icon-user"></i>@entidade.Secretario.Nome</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="span9">
+                    <h1>
+                        @ContaSession.ContaNaSessao().Instituicao.Nome
+                    </h1>
+                    <address>
+                        <strong>@instituicao.CNPJ</strong><br>
+                        endereço : @endereco.Logradouro, @endereco.Numero<br>
+                        @endereco.Bairro, @endereco.Cidade / @endereco.Uf<br>
+                        telefone : @instituicao.Telefone
+                    </address>
+                </div>
+            </div>
+        }
         <div class="row-fluid">
             <div class="span3">
                 <div class="well sidebar-nav">
@@ -30,13 +65,16 @@
                         <li class="nav-header">Cadastros</li>
                         @if (ContaSession.ContaDoTipoCentro())
                         {
-                            <li>@Html.ActionLink("Entidades", "Index", "Entidade")</li>
-                            <li>@Html.ActionLink("Usuários", "Index", "Account", new { id = ContaSession.ContaNaSessao().Instituicao.Id }, null)</li>
+                            <li><a href="@Url.Action("Index", "Entidade")"><i class="icon-home"></i>Entidades</a></li>
+                            <li><a href="@Url.Action("Index", "Account", new { id = ContaSession.ContaNaSessao().Instituicao.Id })">
+                                <i class="icon-user"></i>Usuários</a></li>
                         }
                         else if (ContaSession.ContaDoTipoEntidade())
                         { 
-                            <li>@Html.ActionLink("Membros", "Index", "Membro", new { id = ContaSession.InstituicaoDaConta().Id }, null)</li>
-                            <li>@Html.ActionLink("Mudar Senha", "ChangePassword", "Account", new ChangePasswordModel(), null)</li>
+                            <li><a href="@Url.Action("Index", "Membro", new { id = ContaSession.InstituicaoDaConta().Id })">
+                                <i class="icon-home"></i>Membros</a></li>
+                            <li><a href="@Url.Action("ChangePassword", "Account")"><i class="icon-user"></i>Mudar
+                                senha</a></li>
                         }
                         else if (ContaSession.UsuarioDoPerfilSuper())
                         {
@@ -45,6 +83,7 @@
                         <li class="nav-header">Sistema</li>
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                        <li class="divider"></li>
                         <li>@Html.ActionLink("Sair", "LogOff", "Account")</li>
                     </ul>
                 </div>
