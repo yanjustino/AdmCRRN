@@ -12,6 +12,9 @@ namespace AdmCRRN.Context
         public DbSet<Conta> Contas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Instituicao> Instituicoes { get; set; }
+        public DbSet<TipoPagamento> TiposPagamento { get; set; }
+        public DbSet<PlanoConta> PlanosConta { get; set; }
+        public DbSet<Lancamento> Lancamentos { get; set; }
  
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
