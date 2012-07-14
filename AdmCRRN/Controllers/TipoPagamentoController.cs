@@ -16,7 +16,7 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index()
         {
-            var id = ContaSession.ContaNaSessao().Id;
+            var id = ContaSession.InstituicaoDaConta().Id;
             var tiposPagamento = contexto.TiposPagamento.Where(t => t.Centro.Id == id);
             return View(tiposPagamento);
         }

@@ -15,7 +15,7 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index()
         {
-            var id = ContaSession.ContaNaSessao().Id;
+            var id = ContaSession.InstituicaoDaConta().Id;
 
             var plano_conta = contexto.PlanosConta.Where(t => t.Centro.Id == id);
             return View(plano_conta);
