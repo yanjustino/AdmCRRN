@@ -74,6 +74,7 @@
     <Compile Include="Controllers\CentroController.cs" />
     <Compile Include="Controllers\EntidadeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LancamentoController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\MembroController.cs" />
     <Compile Include="Controllers\PlanoContaController.cs" />
@@ -303,6 +304,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PlanoConta\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento\Delete.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
