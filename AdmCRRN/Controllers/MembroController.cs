@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Linq;
-using AdmCRRN.Context;
 using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
-using AdmCRRN.Models.Sessoes;
+using AdmCRRN.Controllers.Aplicacao.Sessao;
+using AdmCRRN.Models.Context;
 
 namespace AdmCRRN.Controllers
 {
@@ -14,6 +14,10 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index(int id)
         {
+            var entidade = contexto.Entidades.Find(id);
+            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+                return RedirectToAction("Index", "Home");
+
             var membros = contexto.Membros.Where(e => e.Entidade.Id == id);
             return View(membros);
         }
@@ -32,7 +36,11 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Details(int id)
         {
-            return View(contexto.Membros.Find(id));
+            var membro = contexto.Membros.Find(id);
+            if(!AutorizacoesSessao.MembroAutorizado(membro))
+                return RedirectToAction("Index", "Home");
+
+            return View(membro);
         }
 
         [Authorize(Roles = "Usuario")]
@@ -50,11 +58,11 @@ namespace AdmCRRN.Controllers
                                                          new { Value=((int)TipoEstadoCivil.Viuvo).ToString(), Text=TipoEstadoCivil.Viuvo.ToString(), Selected=false } },
                                                  "Value", "Text", "Selected");
 
-            int idEntidade = ContaSession.InstituicaoDaConta().Id;
+            int id_entidade = SessaoUsuario.Conta().Instituicao.Id;
 
             Membro model = new Membro();
             model.Endereco = new Endereco();
-            model.Entidade = contexto.Entidades.Find(idEntidade);
+            model.Entidade = contexto.Entidades.Find(id_entidade);
             return View(model);
         }
 
@@ -65,7 +73,7 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int idEntidade = ContaSession.InstituicaoDaConta().Id;
+                    int idEntidade = SessaoUsuario.Conta().Instituicao.Id;
 
                     model.Entidade = contexto.Entidades.Find(idEntidade);
                     contexto.Membros.Add(model);
@@ -90,21 +98,24 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Edit(int id)
         {
-            Membro model = contexto.Membros.Find(id);
+            var membro = contexto.Membros.Find(id);
+            if (!AutorizacoesSessao.MembroAutorizado(membro))
+                return RedirectToAction("Index", "Home");
+
 
             ViewBag.TipoMembro = new SelectList(new[] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString() },
                                                         new { Value=((int)TipoMembro.Congregado).ToString(), Text=TipoMembro.Congregado.ToString() },
                                                         new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString() } },
-                                                 "Value", "Text", model.Tipo.ToString());
+                                                 "Value", "Text", membro.Tipo.ToString());
 
             ViewBag.EstadoCivil = new SelectList(new[] { new { Value=((int)TipoEstadoCivil.Solteiro).ToString(), Text=TipoEstadoCivil.Solteiro.ToString() },
                                                          new { Value=((int)TipoEstadoCivil.Casado).ToString(), Text=TipoEstadoCivil.Casado.ToString() },
                                                          new { Value=((int)TipoEstadoCivil.Separado).ToString(), Text=TipoEstadoCivil.Separado.ToString() },
                                                          new { Value=((int)TipoEstadoCivil.Divorciado).ToString(), Text=TipoEstadoCivil.Divorciado.ToString() },
                                                          new { Value=((int)TipoEstadoCivil.Viuvo).ToString(), Text=TipoEstadoCivil.Viuvo.ToString() } },
-                                                 "Value", "Text", model.EstadoCivil.ToString());
+                                                 "Value", "Text", membro.EstadoCivil.ToString());
 
-            return View(model);
+            return View(membro);
         }
 
         [HttpPost]
@@ -112,7 +123,7 @@ namespace AdmCRRN.Controllers
         {
             try
             {
-                int idEntidade = ContaSession.InstituicaoDaConta().Id;
+                int idEntidade = SessaoUsuario.Conta().Instituicao.Id;
 
                 if (ModelState.IsValid)
                 {
@@ -133,7 +144,11 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(contexto.Membros.Find(id));
+            var membro = contexto.Membros.Find(id);
+            if (!AutorizacoesSessao.MembroAutorizado(membro))
+                return RedirectToAction("Index", "Home");
+
+            return View(membro);
         }
 
         [HttpPost]

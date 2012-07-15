@@ -69,7 +69,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Controllers\Aplicacao\Sessao\AutorizacoesSessao.cs" />
+    <Compile Include="Models\Reposiotorio\Context\DataContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CentroController.cs" />
     <Compile Include="Controllers\EntidadeController.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Reposiotorio\Migrations\Configuration.cs" />
     <Compile Include="Models\Agregados\Endereco.cs" />
     <Compile Include="Models\Atributos\ValidacaoCNPJCPFAttribute.cs" />
     <Compile Include="Models\Atributos\ValidacaoEmailAttribute.cs" />
@@ -92,11 +93,11 @@
     <Compile Include="Models\Membro.cs" />
     <Compile Include="Models\Instituicao.cs" />
     <Compile Include="Models\PlanoConta.cs" />
-    <Compile Include="Models\Sessoes\ContaSession.cs" />
+    <Compile Include="Controllers\Aplicacao\Sessao\SessaoUsuario.cs" />
     <Compile Include="Models\TipoPagamento.cs" />
     <Compile Include="Models\Transporte\AccountModels.cs" />
     <Compile Include="Models\Transporte\EntidadeDTO.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Transporte\Usuario.cs" />
     <Compile Include="Models\ViewModel\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

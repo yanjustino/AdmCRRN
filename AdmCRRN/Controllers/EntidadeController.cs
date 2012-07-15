@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AdmCRRN.Context;
 using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
-using AdmCRRN.Models.Sessoes;
+using AdmCRRN.Controllers.Aplicacao.Sessao;
 using AdmCRRN.Models.Transporte;
 using System;
+using AdmCRRN.Models.Context;
 
 namespace AdmCRRN.Controllers
 {
@@ -17,7 +17,7 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index()
         {
-            var centro = (Centro)ContaSession.InstituicaoDaConta();
+            var centro = (Centro)SessaoUsuario.Conta().Instituicao;
             var entidades = contexto.Entidades.Where(e => e.Centro.Id == centro.Id).ToList();
 
             var entidadesDTO = new List<EntidadeDTO>();
@@ -42,7 +42,11 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Details(int id)
         {
-            return View(contexto.Entidades.Find(id));
+            var entidade = contexto.Entidades.Find(id);
+            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+                return RedirectToAction("Index", "Home");
+
+            return View(entidade);
         }
 
         public ActionResult Create()
@@ -60,7 +64,9 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int idCentro = ContaSession.InstituicaoDaConta().Id;
+                    int idCentro = SessaoUsuario.Conta().Instituicao.Id;
+
+
                     model.Centro = contexto.Centros.Find(idCentro);
                     contexto.Entidades.Add(model);
                     contexto.SaveChanges();
@@ -86,7 +92,10 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Edit(int id)
         {
-            var entidade = contexto.Entidades.Where(e => e.Id == id).FirstOrDefault();
+            var entidade = contexto.Entidades.Find(id);
+            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+                return RedirectToAction("Index", "Home");
+
             var membros = contexto.Membros.Where(x => x.Entidade.Id == id);
 
             CriarViewBagsEdit(entidade, membros);
@@ -140,7 +149,11 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(contexto.Entidades.Find(id));
+            var entidade = contexto.Entidades.Find(id);
+            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+                return RedirectToAction("Index", "Home");
+
+            return View(entidade);
         }
 
         [HttpPost]

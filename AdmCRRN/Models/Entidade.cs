@@ -1,6 +1,7 @@
 ﻿using AdmCRRN.Models.Agregados;
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -46,6 +47,11 @@ namespace AdmCRRN.Models
                 case TipoEntidade.Igreja: return "Igreja";
                 default: return "";
             }
+        }
+
+        public bool MembroPertenceEntidade(Membro membro)
+        {
+            return this.Membros.Where(m => m.Id == membro.Id).FirstOrDefault() != null;
         }
     }
 }
