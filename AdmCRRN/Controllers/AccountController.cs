@@ -7,9 +7,9 @@ using System.Web.Routing;
 using System.Web.Security;
 using AdmCRRN.Models.Transporte;
 using AdmCRRN.Models;
-using AdmCRRN.Context;
-using AdmCRRN.Models.Sessoes;
+using AdmCRRN.Controllers.Aplicacao.Sessao;
 using AdmCRRN.Models.ViewModel;
+using AdmCRRN.Models.Context;
 
 namespace AdmCRRN.Controllers
 {
@@ -17,21 +17,19 @@ namespace AdmCRRN.Controllers
     {
         DataContext contexto = new DataContext();
 
+        [Authorize]
         public ActionResult Index(int id)
         {
-            var entidade = ContaSession.ContaNaSessao();
+            var instituicao = contexto.Instituicoes.Find(id);
+            if (!AutorizacoesSessao.InstituicaoAutorizada(instituicao))
+                return RedirectToAction("Index", "Home");
 
-            List<Conta> contas = entidade == null ? 
-                                 contexto.Contas.ToList() :
-                                 contexto.Contas.Where(e => e.Instituicao.Id == id).ToList();
+            ViewBag.TextOnLink = instituicao.IsCentro() ? "Novo Usuário administrador" : "Novo Usuário da Entidade";
+            ViewBag.ActionLink = instituicao.IsCentro() ? "RegisterAdmin" : "Register";
+            ViewBag.RouteValue = instituicao.IsCentro() ? new { id = id } : new { id = instituicao.Id };
 
-            var viewModel = new UsuarioViewModel();
-            var usuarios = viewModel.CriarListaUsuarios(contas).ToList();
-            var tipoInstituicao = viewModel.TipoInstituicao(contas.FirstOrDefault());
-
-            ViewBag.TextoLink = tipoInstituicao == "centro" ? "Novo Usuário administrador" : "Novo Usuário da Entidade";
-            ViewBag.ActionLink = tipoInstituicao == "centro" ? "RegisterAdmin" : "Register";
-            ViewBag.routeValue = tipoInstituicao == "centro" ? new { id = id } : new { id = contas.First().Instituicao.Id };
+            var contas = instituicao.Contas.ToList();
+            var usuarios = UsuarioViewModel.CriarListaUsuarios(contas).ToList();
 
             return View(usuarios);
         }
@@ -51,7 +49,7 @@ namespace AdmCRRN.Controllers
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     var chave = (Guid)Membership.GetUser(model.UserName).ProviderUserKey;
                     var conta = contexto.Contas.Where(c => c.IdUsuario == chave).FirstOrDefault();
-                    ContaSession.Adicionar(conta);
+                    SessaoUsuario.Iniciar(conta);
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -73,10 +71,11 @@ namespace AdmCRRN.Controllers
             return View(model);
         }
 
+        [Authorize()]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            ContaSession.Encerrar();
+            SessaoUsuario.Encerrar();
 
             return RedirectToAction("Index", "Home");
         }
@@ -84,6 +83,10 @@ namespace AdmCRRN.Controllers
         [Authorize(Roles = "Super, Admin")]
         public ActionResult Register(int id)
         {
+            var instituicao = contexto.Instituicoes.Find(id);
+            if (!AutorizacoesSessao.InstituicaoAutorizada(instituicao))
+                return RedirectToAction("Index", "Home");
+
             RegisterModel model = new RegisterModel()
             {
                 IdInstituicao = id,
@@ -96,7 +99,6 @@ namespace AdmCRRN.Controllers
         [Authorize(Roles = "Super")]
         public ActionResult RegisterSuper()
         {
-
             RegisterModel model = new RegisterModel();
             model.AccountType = AccountsType.Super;
             return View("Register", model);
@@ -105,6 +107,10 @@ namespace AdmCRRN.Controllers
         [Authorize(Roles = "Super, Admin")]
         public ActionResult RegisterAdmin(int id)
         {
+            var instituicao = contexto.Instituicoes.Find(id);
+            if (!AutorizacoesSessao.InstituicaoAutorizada(instituicao))
+                return RedirectToAction("Index", "Home");
+
             RegisterModel model = new RegisterModel()
             {
                 IdInstituicao = id,
@@ -115,6 +121,7 @@ namespace AdmCRRN.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
@@ -157,8 +164,8 @@ namespace AdmCRRN.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
             if (ModelState.IsValid)

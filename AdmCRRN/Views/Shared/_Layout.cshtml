@@ -1,6 +1,7 @@
 ﻿@using AdmCRRN.Models
-@using AdmCRRN.Models.Sessoes
 @using AdmCRRN.Models.Transporte
+@using AdmCRRN.Controllers.Aplicacao.Sessao
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,6 @@
                    <img src="../../img/Imagem4.png" style="margin-top : -15px"/>
                    <b style="color:#fff; font-size:20pt; text-decoration: none">ICTHUS - sistema para gestão igrejas</b>
                    </a>
-                   <a class="btn btn-info btn-large pull-right" style="margin-top : 50px">Conheça nosso sistema »</a>
                 </div>
             </div>
         </div>
@@ -42,22 +42,22 @@
                 <div class="well sidebar-nav">
                     <ul class="nav nav-list">
                         <li class="nav-header">Cadastros</li>
-                        @if (ContaSession.ContaDoTipoCentro())
+                        @if (SessaoUsuario.UsuarioSuperAdmin())
+                        {
+                            <li>@Html.ActionLink("Centro Administrativo", "Index", "Centro")</li>
+                        }
+                        else if (SessaoUsuario.Conta().Instituicao.IsCentro())
                         {
                             <li><a href="@Url.Action("Index", "Entidade")"><i class="icon-home"></i>Entidades</a></li>
-                            <li><a href="@Url.Action("Index", "Account", new { id = ContaSession.ContaNaSessao().Instituicao.Id })"><i class="icon-user"></i>Usuários</a></li>
+                            <li><a href="@Url.Action("Index", "Account", new { id = SessaoUsuario.Conta().Instituicao.Id })"><i class="icon-user"></i>Usuários</a></li>
                             <li class="nav-header">Mov. Caixa</li>
                             <li><a href="@Url.Action("Index", "TipoPagamento")"><i class="icon-user"></i>Tipos de Pagamento</a></li>
                             <li><a href="@Url.Action("Index", "PlanoConta")"><i class="icon-user"></i>Planos de Conta</a></li>
                         }
-                        else if (ContaSession.ContaDoTipoEntidade())
+                        else if (SessaoUsuario.Conta().Instituicao.IsEntidade())
                         { 
-                            <li><a href="@Url.Action("Index", "Membro", new { id = ContaSession.InstituicaoDaConta().Id })"><i class="icon-home"></i>Membros</a></li>
+                            <li><a href="@Url.Action("Index", "Membro", new { id = SessaoUsuario.Conta().Instituicao.Id })"><i class="icon-home"></i>Membros</a></li>
                             <li><a href="@Url.Action("ChangePassword", "Account")"><i class="icon-user"></i>Mudar senha</a></li>
-                        }
-                        else if (ContaSession.UsuarioDoPerfilSuper())
-                        {
-                            <li>@Html.ActionLink("Centro Administrativo", "Index", "Centro")</li>
                         }
                         <li class="nav-header">Sistema</li>
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>

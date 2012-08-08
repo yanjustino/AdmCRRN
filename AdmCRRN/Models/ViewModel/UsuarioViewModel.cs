@@ -9,17 +9,7 @@ namespace AdmCRRN.Models.ViewModel
 {
     public class UsuarioViewModel
     {
-        public string TipoInstituicao(Conta conta)
-        {
-            if (conta == null)
-                return "centro";
-
-            return conta.Instituicao.GetType().BaseType == typeof(Entidade) ?
-                "entidade" :
-                "centro";
-        }
-        
-        public IEnumerable<Usuario> CriarListaUsuarios(List<Conta> contas)
+        public static IEnumerable<Usuario> CriarListaUsuarios(List<Conta> contas)
         {
             foreach (var conta in contas)
                 yield return new Usuario(conta);

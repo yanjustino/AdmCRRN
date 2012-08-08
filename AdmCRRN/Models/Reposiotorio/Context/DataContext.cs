@@ -2,7 +2,7 @@
 using AdmCRRN.Models;
 using AdmCRRN.Models.Agregados;
 
-namespace AdmCRRN.Context
+namespace AdmCRRN.Models.Context
 {
     public class DataContext: DbContext
     {

@@ -16,12 +16,19 @@ namespace AdmCRRN.Models
 
         [Required(ErrorMessage = "Informe o nome do Centro Administrativos")]
         public string Nome { get; set; }
-
-        //[ValidacaoCNPJCPF]
-        //[Required(ErrorMessage = "Informe o CNPJ")]
         public string CNPJ { get; set; }
 
         public virtual Endereco Endereco { get; set; }
         public virtual ICollection<Conta> Contas { get; set; }
+
+        public bool IsCentro()
+        {
+            return this.GetType().BaseType == typeof(Centro);
+        }
+
+        public bool IsEntidade()
+        {
+            return this.GetType().BaseType == typeof(Entidade);
+        }
     }
 }

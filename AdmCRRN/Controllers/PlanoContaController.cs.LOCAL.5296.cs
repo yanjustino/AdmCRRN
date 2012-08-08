@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AdmCRRN.Controllers.Aplicacao.Sessao;
-using AdmCRRN.Models.Context;
+using AdmCRRN.Context;
 using AdmCRRN.Models;
+using AdmCRRN.Models.Sessoes;
 
 namespace AdmCRRN.Controllers
 {
@@ -15,7 +15,7 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index()
         {
-            var id = SessaoUsuario.Conta().Instituicao.Id;
+            var id = ContaSession.InstituicaoDaConta().Id;
 
             var plano_conta = contexto.PlanosConta.Where(t => t.Centro.Id == id);
             return View(plano_conta);
@@ -33,7 +33,7 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int id_entidade = SessaoUsuario.Conta().Instituicao.Id;
+                    int id_entidade = ContaSession.InstituicaoDaConta().Id;
 
                     model.Centro = contexto.Centros.Find(id_entidade);
                     contexto.PlanosConta.Add(model);
@@ -62,7 +62,7 @@ namespace AdmCRRN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int id = SessaoUsuario.Conta().Instituicao.Id;
+                    int id = ContaSession.InstituicaoDaConta().Id;
 
                     contexto.Entry(model).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();

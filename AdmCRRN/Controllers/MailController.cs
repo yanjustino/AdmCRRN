@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using AdmCRRN.Models;
 using AdmCRRN.Models.ViewModel;
+using AdmCRRN.Models.Transporte;
 
 namespace AdmCRRN.Controllers
 {

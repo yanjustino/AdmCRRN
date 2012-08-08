@@ -15,7 +15,11 @@ namespace AdmCRRN.Controllers
 
         public ActionResult Index()
         {
-            var id = SessaoUsuario.Conta().Instituicao.Id;
+<<<<<<< Updated upstream
+            var id = ContaSession.InstituicaoDaConta().Id;
+=======
+            var id = SessaoUsuario.Conta().Id;
+>>>>>>> Stashed changes
 
             var plano_conta = contexto.PlanosConta.Where(t => t.Centro.Id == id);
             return View(plano_conta);

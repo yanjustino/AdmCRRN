@@ -5,7 +5,7 @@ using System.Web;
 using AdmCRRN.Models.Transporte;
 using System.Web.Security;
 
-namespace AdmCRRN.Models
+namespace AdmCRRN.Models.Transporte
 {
     public class Usuario
     {
