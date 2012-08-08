@@ -10,10 +10,17 @@ namespace AdmCRRN.Controllers.Aplicacao.Sessao
     {
         public static bool InstituicaoAutorizada(Instituicao instituicao)
         {
-            var instituicao_sessao = SessaoUsuario.Conta().Instituicao;
+            var autorizado = false;
 
-            return (instituicao_sessao.Id == instituicao.Id) ||
-                   (instituicao.IsEntidade() && EntidadeAutorizada((Entidade)instituicao));
+            if (SessaoUsuario.UsuarioSuperAdmin())
+                autorizado = true;
+            else
+            {
+                var instituicao_sessao = SessaoUsuario.Conta().Instituicao;
+                autorizado = (instituicao_sessao.Id == instituicao.Id) ||
+                             (instituicao.IsEntidade() && EntidadeAutorizada((Entidade)instituicao));
+            }
+            return autorizado;
         }
 
         public static bool EntidadeAutorizada(Entidade entidade)
