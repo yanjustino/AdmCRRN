@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AdmCRRN.Models;
-using AdmCRRN.Context;
+using AdmCRRN.Models.Context;
 
 namespace AdmCRRN.Controllers
 {
@@ -21,6 +21,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Create()
         {
             ViewBag.pagamentos = contexto.TiposPagamento.ToList();
+            ViewBag.contas = contexto.PlanosConta.ToList();
             return View();
         }
         
