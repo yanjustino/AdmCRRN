@@ -20,7 +20,7 @@ namespace AdmCRRN.Models
         public string Status { get; set; }
 
         public virtual Entidade Entidade { get; set; }
-        public virtual PlanoConta Conta { get; set; }
+        public virtual PlanoConta PlanoConta { get; set; }
         public virtual TipoPagamento Pagamento { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using AdmCRRN.Models;
 
 namespace AdmCRRN.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PlanoContaController : Controller
     {
         DataContext contexto = new DataContext();
