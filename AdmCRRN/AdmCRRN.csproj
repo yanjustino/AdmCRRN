@@ -99,6 +99,8 @@
     <Compile Include="Models\Transporte\AccountModels.cs" />
     <Compile Include="Models\Transporte\EntidadeDTO.cs" />
     <Compile Include="Models\Transporte\Usuario.cs" />
+    <Compile Include="Models\ViewModel\ItemResumoViewModel.cs" />
+    <Compile Include="Models\ViewModel\ResumoLancamentoViewModel.cs" />
     <Compile Include="Models\ViewModel\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

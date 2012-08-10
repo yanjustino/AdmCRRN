@@ -66,7 +66,6 @@ namespace AdmCRRN.Controllers
                 {
                     int idCentro = SessaoUsuario.Conta().Instituicao.Id;
 
-
                     model.Centro = contexto.Centros.Find(idCentro);
                     contexto.Entidades.Add(model);
                     contexto.SaveChanges();

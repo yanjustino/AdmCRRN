@@ -1,51 +1,117 @@
-﻿@model IEnumerable<AdmCRRN.Models.Lancamento>
-
+﻿@model AdmCRRN.Models.ViewModel.ResumoLancamentoViewModel
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+<h2>
+    Resumo dos lançamentos do dia 09/08/2012</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo lançamento", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            Valor
-        </th>
-        <th>
-            Historico
-        </th>
-        <th>
-            Data
-        </th>
-        <th>
-            Status
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
+<table class="table">
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Valor)
+            Saldo anterior
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Historico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        <td>@Model.SaldoAnterior.ToString("c")
         </td>
     </tr>
-}
-
+    <tr>
+        <td colspan="2">
+            Receitas
+        </td>
+    </tr>
+    @foreach (var item in Model.Receitas)
+    {
+        <tr>
+            <td>@item.Descricao
+            </td>
+            <td>@item.Valor.ToString("c")
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td>@Model.TotalReceitas.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Despesas
+        </td>
+    </tr>
+    @foreach (var item in Model.Despesas)
+    {
+        <tr>
+            <td>
+                @item.Descricao
+            </td>
+            <td>
+                @item.Valor.ToString("c")
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td>
+            @Model.TotalDespesas.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Sumário
+        </td>
+    </tr>
+    <tr>
+        <td>
+            (+) Saldo anterior
+        </td>
+        <td>@Model.SaldoAnterior.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            (+) Total das receitas
+        </td>
+        <td>@Model.TotalReceitas.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            (-) Total das despesas
+        </td>
+        <td>@Model.TotalDespesas.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            (=) Saldo final
+        </td>
+        <td>@Model.SaldoFinal.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Total de membros
+        </td>
+        <td>@Model.QuantidadeMembros
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Total de congregados
+        </td>
+        <td>@Model.QuantidadeCongregados
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Total de crianças
+        </td>
+        <td>@Model.QuantidadeCriancas
+        </td>
+    </tr>
 </table>
