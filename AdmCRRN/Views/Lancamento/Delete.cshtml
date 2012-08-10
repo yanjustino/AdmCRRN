@@ -4,35 +4,32 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Exclusão</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Você tem certeza qeu deseja excluir este lançamento?</h3>
 <fieldset>
-    <legend>Lancamento</legend>
+    <legend>Lançamento</legend>
 
-    <div class="display-label">Valor</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Valor)
-    </div>
-
-    <div class="display-label">Historico</div>
-    <div class="display-field">
+        <strong>Historico: </strong>
         @Html.DisplayFor(model => model.Historico)
     </div>
 
-    <div class="display-label">Data</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Data)
+        <strong>Valor: </strong>
+        @Html.DisplayFor(model => model.Valor)
     </div>
 
-    <div class="display-label">Status</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Status)
+        <strong>Data: </strong>
+        @Html.DisplayFor(model => model.Data)
     </div>
+    <br />
+    <br />
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
         <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Voltar para lista", "Index")
     </p>
 }

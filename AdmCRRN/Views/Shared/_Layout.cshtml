@@ -58,6 +58,9 @@
                         { 
                             <li><a href="@Url.Action("Index", "Membro", new { id = SessaoUsuario.Conta().Instituicao.Id })"><i class="icon-home"></i>Membros</a></li>
                             <li><a href="@Url.Action("ChangePassword", "Account")"><i class="icon-user"></i>Mudar senha</a></li>
+                            <li class="nav-header">Mov. Caixa</li>
+                            <li><a href="@Url.Action("Index", "Lancamento")"><i class="icon-user"></i>Lançamentos</a></li>
+                            <li><a href="@Url.Action("Create", "Lancamento")"><i class="icon-user"></i>Fazer Lançamento</a></li>
                         }
                         <li class="nav-header">Sistema</li>
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>

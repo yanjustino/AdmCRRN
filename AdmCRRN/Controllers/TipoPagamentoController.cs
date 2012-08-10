@@ -9,7 +9,7 @@ using AdmCRRN.Models.Context;
 
 namespace AdmCRRN.Controllers
 {
-    [Authorize()]
+    [Authorize(Roles = "Admin")]
     public class TipoPagamentoController : Controller
     {
         DataContext contexto = new DataContext();
