@@ -32,6 +32,13 @@ namespace AdmCRRN.Controllers.Aplicacao.Sessao
                 var centro = (Centro)instituicao_sessao;
                 return centro.EntidadePertenceAoCentro(entidade);
             }
+
+            if (instituicao_sessao.IsEntidade())
+            {
+                var id_entidade_sessao = ((Entidade)instituicao_sessao).Id;
+                return id_entidade_sessao == entidade.Id;
+            }           
+
             return false;
         }
 
