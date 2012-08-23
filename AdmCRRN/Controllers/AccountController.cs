@@ -13,7 +13,7 @@ using AdmCRRN.Models.Context;
 
 namespace AdmCRRN.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : ApplicationController
     {
         DataContext contexto = new DataContext();
 
@@ -21,7 +21,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Index(int id)
         {
             var instituicao = contexto.Instituicoes.Find(id);
-            if (!AutorizacoesSessao.InstituicaoAutorizada(instituicao))
+            if (!AcessoPermitido(instituicao))
                 return RedirectToAction("Index", "Home");
 
             ViewBag.TextOnLink = instituicao.IsCentro() ? "Novo Usuário administrador" : "Novo Usuário da Entidade";
@@ -84,7 +84,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Register(int id)
         {
             var instituicao = contexto.Instituicoes.Find(id);
-            if (!AutorizacoesSessao.InstituicaoAutorizada(instituicao))
+            if (!AcessoPermitido(instituicao))
                 return RedirectToAction("Index", "Home");
 
             RegisterModel model = new RegisterModel()
@@ -108,7 +108,7 @@ namespace AdmCRRN.Controllers
         public ActionResult RegisterAdmin(int id)
         {
             var instituicao = contexto.Instituicoes.Find(id);
-            if (!AutorizacoesSessao.InstituicaoAutorizada(instituicao))
+            if (!AcessoPermitido(instituicao))
                 return RedirectToAction("Index", "Home");
 
             RegisterModel model = new RegisterModel()

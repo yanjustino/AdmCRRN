@@ -8,14 +8,14 @@ using AdmCRRN.Models.Context;
 namespace AdmCRRN.Controllers
 {
     [Authorize(Roles = "Admin, Usuario")]
-    public class MembroController : Controller
+    public class MembroController : ApplicationController
     {
         DataContext contexto = new DataContext();
 
         public ActionResult Index(int id)
         {
             var entidade = contexto.Entidades.Find(id);
-            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+            if (!AcessoPermitido(entidade))
                 return RedirectToAction("Index", "Home");
 
             var membros = contexto.Membros.Where(e => e.Entidade.Id == id);
@@ -37,7 +37,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Details(int id)
         {
             var membro = contexto.Membros.Find(id);
-            if(!AutorizacoesSessao.MembroAutorizado(membro))
+            if(!UsuarioSessaoPodeManipularMembro(membro))
                 return RedirectToAction("Index", "Home");
 
             return View(membro);
@@ -99,7 +99,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Edit(int id)
         {
             var membro = contexto.Membros.Find(id);
-            if (!AutorizacoesSessao.MembroAutorizado(membro))
+            if (!UsuarioSessaoPodeManipularMembro(membro))
                 return RedirectToAction("Index", "Home");
 
 
@@ -145,7 +145,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Delete(int id)
         {
             var membro = contexto.Membros.Find(id);
-            if (!AutorizacoesSessao.MembroAutorizado(membro))
+            if (!UsuarioSessaoPodeManipularMembro(membro))
                 return RedirectToAction("Index", "Home");
 
             return View(membro);
@@ -169,5 +169,27 @@ namespace AdmCRRN.Controllers
                 return View(model);
             }
         }
+
+        private bool UsuarioSessaoPodeManipularMembro(Membro membro)
+        {
+            var instituicao_sessao = SessaoUsuario.Conta().Instituicao;
+
+            if (instituicao_sessao.IsCentro())
+            {
+                var centro = (Centro)instituicao_sessao;
+                var entidades = centro.Entidades.Where(e => e.Membros.Where(m => m.Id == membro.Id).Count() > 0).FirstOrDefault();
+                return entidades != null;
+            }
+
+            if (instituicao_sessao.IsEntidade())
+            {
+                var entidade = (Entidade)instituicao_sessao;
+                var membros = contexto.Membros.Where(m => m.Id == membro.Id && m.Entidade.Id == entidade.Id).ToList().FirstOrDefault();
+                return membros != null;
+            }
+
+            return false;
+        }
+
     }
 }
