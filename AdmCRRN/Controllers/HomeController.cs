@@ -11,7 +11,7 @@ namespace AdmCRRN.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "";
 
             return View();
         }

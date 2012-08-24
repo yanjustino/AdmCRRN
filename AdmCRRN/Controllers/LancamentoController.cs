@@ -23,15 +23,27 @@ namespace AdmCRRN.Controllers
                 entidade_sessao = (Entidade)SessaoUsuario.Conta().Instituicao;
         }
 
+        public ActionResult FecharMovimento()
+        {
+            DateTime data = DateTime.Today;
+            var parametro = contexto.Parametros.Where(c => c.Descricao == "DataUltimoFechamento").FirstOrDefault();
+            contexto.Entry(parametro).State = System.Data.EntityState.Modified;
+            parametro.valor = Convert.ToString(data);
+            contexto.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Index()
         {
             var entidadeId = SessaoUsuario.Conta().Instituicao.Id;
+            var dataUltimoFechamento = SessaoUsuario.GetDataDoUltimoFechamento();
 
             ResumoLancamentoViewModel resumo = new ResumoLancamentoViewModel();
             resumo.SaldoAnterior = 0;
             resumo.Receitas = (from lancamentos in contexto.Lancamentos
                                where lancamentos.Entidade.Id == entidadeId &&
-                                     lancamentos.PlanoConta.TipoConta.Equals("Receitas")
+                                     lancamentos.PlanoConta.TipoConta.Equals("Receitas") &&
+                                     lancamentos.Data>=dataUltimoFechamento 
                                group lancamentos by lancamentos.PlanoConta into grupo
                                select new ItemResumoViewModel()
                                {
@@ -41,7 +53,8 @@ namespace AdmCRRN.Controllers
             resumo.TotalReceitas = resumo.Receitas.Sum(l => l.Valor);
             resumo.Despesas = (from lancamentos in contexto.Lancamentos
                                where lancamentos.Entidade.Id == entidadeId &&
-                                     lancamentos.PlanoConta.TipoConta.Equals("Despesas")
+                                     lancamentos.PlanoConta.TipoConta.Equals("Despesas") &&
+                                     lancamentos.Data>= dataUltimoFechamento
                                group lancamentos by lancamentos.PlanoConta into grupo
                                select new ItemResumoViewModel()
                                {
@@ -68,11 +81,19 @@ namespace AdmCRRN.Controllers
         [HttpPost]
         public ActionResult Create(Lancamento model)
         {
+            var dataUltimoFechamento = SessaoUsuario.GetDataDoUltimoFechamento();
+
             model.Entidade = contexto.Entidades.Find(entidade_sessao.Id);
             model.Pagamento = contexto.TiposPagamento.Find(model.Pagamento.Id);
             model.PlanoConta = contexto.PlanosConta.Find(model.PlanoConta.Id);
             model.Status = "A";
-
+            
+            if (model.Data < dataUltimoFechamento)
+            {
+                ModelState.AddModelError("","Data de lancamento menor que a data de fechamento");
+                GerarViewBags();
+                return View(model);
+            }
             contexto.Lancamentos.Add(model);
             contexto.SaveChanges();
             return RedirectToAction("Index");

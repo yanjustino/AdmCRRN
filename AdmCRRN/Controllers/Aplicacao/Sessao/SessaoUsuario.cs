@@ -9,9 +9,10 @@ namespace AdmCRRN.Controllers.Aplicacao.Sessao
 {
     public class SessaoUsuario
     {
-        public static void Iniciar(Conta conta)
+        public static void Iniciar(Conta conta, DateTime dataUltimoFechamento)
         {
             HttpContext.Current.Session["conta"] = conta;
+            HttpContext.Current.Session["DataUltimoFechamento"] = dataUltimoFechamento;
         }
 
         public static void Encerrar()
@@ -36,6 +37,11 @@ namespace AdmCRRN.Controllers.Aplicacao.Sessao
         private static MembershipUser GetUserMemberShip()
         {
             return Membership.GetUser(HttpContext.Current.User.Identity.Name);
+        }
+
+        public static DateTime GetDataDoUltimoFechamento()
+        {
+            return (DateTime)HttpContext.Current.Session["DataUltimoFechamento"];
         }
 
 

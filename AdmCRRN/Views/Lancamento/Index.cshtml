@@ -1,13 +1,15 @@
 @model AdmCRRN.Models.ViewModel.ResumoLancamentoViewModel
+@using AdmCRRN.Controllers.Aplicacao.Sessao         
 @{
     ViewBag.Title = "Lista de lançamentos";
 }
-<h2>
-    Resumo dos lançamentos</h2>
-<h2>
-    Realizar Novo Lançamento</h2>
+<h2>Resumo dos lançamentos</h2>
+<div> 
+   Data do ultimo Fechamento  @SessaoUsuario.GetDataDoUltimoFechamento()
+</div>
 <p>
     @Html.ActionLink("Novo Lançamento", "Create")
+    @Html.ActionLink("Fechar Movimento", "FecharMovimento")
 </p>
 <div>
     <table class="table">

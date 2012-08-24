@@ -49,7 +49,24 @@ namespace AdmCRRN.Controllers
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     var chave = (Guid)Membership.GetUser(model.UserName).ProviderUserKey;
                     var conta = contexto.Contas.Where(c => c.IdUsuario == chave).FirstOrDefault();
-                    SessaoUsuario.Iniciar(conta);
+
+                    DateTime data = DateTime.Today;
+                    if (conta != null && conta.Instituicao.IsEntidade())
+                    {
+
+                        if (contexto.Parametros.Where(c => c.Descricao == "DataUltimoFechamento").FirstOrDefault() == null)
+                        {
+
+                            var entidade = (Entidade)conta.Instituicao;
+                            var parametro = new Parametro() { Descricao = "DataUltimoFechamento", valor = data.ToString(), Entidade = entidade };
+                            contexto.Parametros.Add(parametro);
+                            contexto.SaveChanges();
+
+                        }
+                        data = Convert.ToDateTime(contexto.Parametros.Where(c => c.Descricao == "DataUltimoFechamento").FirstOrDefault().valor);
+
+                    }
+                    SessaoUsuario.Iniciar(conta, data);
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
