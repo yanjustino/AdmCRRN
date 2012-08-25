@@ -11,7 +11,7 @@ using AdmCRRN.Models.Context;
 namespace AdmCRRN.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class EntidadeController : Controller
+    public class EntidadeController : ApplicationController
     {
         DataContext contexto = new DataContext();
 
@@ -43,7 +43,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Details(int id)
         {
             var entidade = contexto.Entidades.Find(id);
-            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+            if (!AcessoPermitido(entidade))
                 return RedirectToAction("Index", "Home");
 
             return View(entidade);
@@ -92,7 +92,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Edit(int id)
         {
             var entidade = contexto.Entidades.Find(id);
-            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+            if (!AcessoPermitido(entidade))
                 return RedirectToAction("Index", "Home");
 
             var membros = contexto.Membros.Where(x => x.Entidade.Id == id);
@@ -149,7 +149,7 @@ namespace AdmCRRN.Controllers
         public ActionResult Delete(int id)
         {
             var entidade = contexto.Entidades.Find(id);
-            if (!AutorizacoesSessao.EntidadeAutorizada(entidade))
+            if (!AcessoPermitido(entidade))
                 return RedirectToAction("Index", "Home");
 
             return View(entidade);
