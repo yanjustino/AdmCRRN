@@ -106,15 +106,14 @@ namespace AdmCRRN.Controllers
             ViewBag.TipoMembro = new SelectList(new[] { new { Value=((int)TipoMembro.Membro).ToString(), Text=TipoMembro.Membro.ToString() },
                                                         new { Value=((int)TipoMembro.Congregado).ToString(), Text=TipoMembro.Congregado.ToString() },
                                                         new { Value=((int)TipoMembro.Criança).ToString(), Text=TipoMembro.Criança.ToString() } },
-                                                 "Value", "Text", membro.Tipo.ToString());
+                                                 "Value", "Text", membro.Tipo);
 
-            ViewBag.EstadoCivil = new SelectList(new[] { new { Value=((int)TipoEstadoCivil.Solteiro).ToString(), Text=TipoEstadoCivil.Solteiro.ToString() },
-                                                         new { Value=((int)TipoEstadoCivil.Casado).ToString(), Text=TipoEstadoCivil.Casado.ToString() },
-                                                         new { Value=((int)TipoEstadoCivil.Separado).ToString(), Text=TipoEstadoCivil.Separado.ToString() },
-                                                         new { Value=((int)TipoEstadoCivil.Divorciado).ToString(), Text=TipoEstadoCivil.Divorciado.ToString() },
-                                                         new { Value=((int)TipoEstadoCivil.Viuvo).ToString(), Text=TipoEstadoCivil.Viuvo.ToString() } },
-                                                 "Value", "Text", membro.EstadoCivil.ToString());
-
+            ViewBag.EstadoCivil = new SelectList(new[] { new { Value=((int)TipoEstadoCivil.Solteiro), Text=TipoEstadoCivil.Solteiro.ToString(),  },
+                                                         new { Value=((int)TipoEstadoCivil.Casado), Text=TipoEstadoCivil.Casado.ToString() },
+                                                         new { Value=((int)TipoEstadoCivil.Separado), Text=TipoEstadoCivil.Separado.ToString() },
+                                                         new { Value=((int)TipoEstadoCivil.Divorciado), Text=TipoEstadoCivil.Divorciado.ToString() },
+                                                         new { Value=((int)TipoEstadoCivil.Viuvo), Text=TipoEstadoCivil.Viuvo.ToString() } },
+                                                 "Value", "Text", membro.EstadoCivil);
             return View(membro);
         }
 
@@ -127,8 +126,9 @@ namespace AdmCRRN.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    contexto.Entry(model).State = System.Data.EntityState.Modified;
-                    contexto.Entry(model.Endereco).State = System.Data.EntityState.Modified;
+                    var membro_atual = contexto.Membros.Find(model.Id);
+                    contexto.Entry(membro_atual).CurrentValues.SetValues(model);
+                    contexto.Entry(membro_atual).State = System.Data.EntityState.Modified;
                     contexto.SaveChanges();
 
                     return RedirectToAction("Index", new { id = idEntidade });

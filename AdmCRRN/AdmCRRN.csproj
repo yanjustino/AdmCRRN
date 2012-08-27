@@ -69,7 +69,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Aplicacao\Sessao\AutorizacoesSessao.cs" />
     <Compile Include="Models\Parametro.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Models\Reposiotorio\Context\DataContext.cs" />
@@ -166,6 +165,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="img\476.jpg" />
+    <Content Include="img\banner.png" />
     <Content Include="img\Document.png" />
     <Content Include="img\Edit.png" />
     <Content Include="img\glyphicons-halflings-white.png" />
@@ -320,9 +320,6 @@
     <Content Include="Views\Lancamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Lancamento\Index.old.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Lancamento\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +330,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Lancamento\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lancamento\Index.old.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Lancamento\Index.cshtml" />
