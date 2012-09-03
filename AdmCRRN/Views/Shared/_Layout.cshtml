@@ -6,69 +6,210 @@
 <head>
     <meta charset="UTF-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/application.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
+
     <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.maskedinput-1.3.min.js")" type="text/javascript"></script>
-    <style type="text/css">
-@*        body
-        {
-            padding-top: 150px;
-            padding-bottom: 40px;
-        }
-        .sidebar-nav
-        {
-            padding: 9px 0;
-        }
-*@    </style>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
 </head>
 <body>
-    <div class="row-fluid" style="background-image:  url('../img/banner.png');
-        background-repeat: no-repeat; background-position: left center; height: 100px; margin-bottom: 20px">
-    </div>
-    <hr />
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span3">
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Cadastros</li>
-                        @if (SessaoUsuario.UsuarioSuperAdmin())
-                        {
-                            <li>@Html.ActionLink("Centro Administrativo", "Index", "Centro")</li>
-                        }
-                        else if (SessaoUsuario.Conta().Instituicao.IsCentro())
-                        {
-                            <li><a href="@Url.Action("Index", "Entidade")"><i class="icon-home"></i>Entidades</a></li>
-                            <li><a href="@Url.Action("Index", "Account", new { id = SessaoUsuario.Conta().Instituicao.Id })">
-                                <i class="icon-user"></i>Usuários</a></li>
-                            <li class="nav-header">Mov. Caixa</li>
-                            <li><a href="@Url.Action("Index", "TipoPagamento")"><i class="icon-user"></i>Tipos de
-                                Pagamento</a></li>
-                            <li><a href="@Url.Action("Index", "PlanoConta")"><i class="icon-user"></i>Planos de
-                                Conta</a></li>
-                        }
-                        else if (SessaoUsuario.Conta().Instituicao.IsEntidade())
-                        { 
-                            <li><a href="@Url.Action("Index", "Membro", new { id = SessaoUsuario.Conta().Instituicao.Id })">
-                                <i class="icon-home"></i>Membros</a></li>
-                            <li><a href="@Url.Action("ChangePassword", "Account")"><i class="icon-user"></i>Mudar
-                                senha</a></li>
-                            <li class="nav-header">Movimentações</li>
-                            <li><a href="@Url.Action("Index", "Lancamento")"><i class="icon-home"></i>Lançamentos</a></li>
-                        }
-                        <li class="nav-header">Sistema</li>
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                        <li class="divider"></li>
-                        <li>@Html.ActionLink("Sair", "LogOff", "Account")</li>
-                    </ul>
+    <div class="navbar navbar-fixed-top m-header">
+        <div class="navbar-inner m-inner">
+            <div class="container-fluid">
+                <a class="brand m-brand" href="#">ICTHUS</a>
+                <div class="nav-collapse collapse">
+                    <div class="btn-group pull-right">
+                        <a class="btn dropdown-toggle" href="@Url.Action("LogOff", "Account")">Sair</a>
+                    </div>
                 </div>
-                <!--/.well -->
             </div>
-            <div class="span9">
-                @RenderBody()
+        </div>
+    </div>
+    <div class="m-top">
+    </div>
+    <aside class="sidebar">
+		<ul class="nav nav-tabs nav-stacked">
+	   @if (SessaoUsuario.UsuarioSuperAdmin())
+    {
+			<li class="">
+				<a href="@Url.Action("Index", "Centro")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-home.png">
+						</div>
+						<div class="title">
+							Centros
+						</div>
+					</div>
+
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+    }
+    else if (SessaoUsuario.Conta() == null)
+    {
+			<li class="">
+				<a href="@Url.Action("Index", "Home")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-home.png">
+						</div>
+						<div class="title">
+							Home
+						</div>
+					</div>
+
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+    }
+    else if (SessaoUsuario.Conta().Instituicao.IsCentro())
+    { 
+			<li class="">
+				<a href="@Url.Action("Index", "Entidade")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-home.png">
+						</div>
+						<div class="title">
+							Entidades
+						</div>
+					</div>
+
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+
+			<li class="">
+				<a href="@Url.Action("Index", "Account", new { id = SessaoUsuario.Conta().Instituicao.Id })">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-user.gif">
+						</div>
+						<div class="title">
+							Usuários
+						</div>
+					</div>
+
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+        
+			<li class="active">
+				<a href="@Url.Action("Index", "TipoPagamento")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-order.gif">
+						</div>
+						<div class="title">
+							Pagamentos
+						</div>
+					</div>
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+        
+            <li class="">
+				<a href="@Url.Action("Index", "PlanoConta")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-report.gif">
+						</div>
+						<div class="title">
+							Plano Contas
+						</div>
+					</div>
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+    }
+    else if (SessaoUsuario.Conta().Instituicao.IsEntidade())
+    { 
+               
+           <li class="">
+				<a href="@Url.Action("Index", "Membro", new { id = SessaoUsuario.Conta().Instituicao.Id })">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-user.gif">
+						</div>
+						<div class="title">
+							Membros
+						</div>
+					</div>
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+            
+           <li class="">
+				<a href="@Url.Action("ChangePassword", "Account")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-setting.gif">
+						</div>
+						<div class="title">
+							Mudar senha
+						</div>
+					</div>
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>
+        
+            <li class="">
+				<a  href="@Url.Action("Index", "Lancamento")">
+					<div>
+						<div class="ico">
+							<img src="../../img/ico/ico-report.gif">
+						</div>
+						<div class="title">
+							Lançamentos
+						</div>
+					</div>
+					<div class="arrow">
+						<div class="bubble-arrow-border"></div>
+						<div class="bubble-arrow"></div>
+					</div>
+				</a>
+			</li>        
+    }
+
+		</ul>
+	</aside>
+    <div class="main-container">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span9">
+                    <div class="page-header">
+                        <h1>@ViewBag.Title</h1>
+                    </div>
+                    @RenderBody()
+                </div>
             </div>
         </div>
     </div>

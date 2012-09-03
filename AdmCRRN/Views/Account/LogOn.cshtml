@@ -1,49 +1,49 @@
 ﻿@model AdmCRRN.Models.Transporte.LogOnModel
 @{
-    ViewBag.Title = "Log On";
-    Layout = null;
+	ViewBag.Title = "Log On";
+	Layout = null;
 }
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/logon_style.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title</title>
+	<link href="@Url.Content("~/Content/logon_style.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="main">
-        <aside>
-            <div class="container-fluid">
-                 <div class="row-fluid">
-                    <div class="span10">
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <h2><img src="../../img/user_login.png"/>LOGIN</h2>
-                        @using (Html.BeginForm())
-                        {
-                                      @Html.TextBoxFor(model => model.UserName, new { placeholder = "informe o login" })
-                                      @Html.PasswordFor(model => model.Password, new { placeholder = "informe a senha" })
+	<div id="main">
+		<aside>
+			<div class="container-fluid">
+				 <div class="row-fluid">
+					<div class="span10">
+						<br />
+						<br />
+						<br />
+						<br />
+						<h2><img src="../../img/user_login.png"/>LOGIN</h2>
+						@using (Html.BeginForm())
+						{
+									  @Html.TextBoxFor(model => model.UserName, new { placeholder = "informe o login" })
+									  @Html.PasswordFor(model => model.Password, new { placeholder = "informe a senha" })
 
-                                      <input type="submit" value="Entrar agora »" class="btn btn-danger" />
-                        }
-                    </div><!--/span-->
-                  </div>            
-                 <hr class="soften">
-                 <div class="row-fluid">
-                    <div class="span12">
-                      <h2><img src="../../img/Edit.png"/>CADASTRE-SE</h2>
-                      <p>Crie seu cadastro e obtenha uma conta no hictus. 
-                         Um sistema que lhe auxiliará no controle de sua igreja.</p>
-                      <p><a class="btn btn-danger" href="#">Cadastre-se »</a></p>
-                    </div><!--/span-->
-                  </div>            
-                 <hr class="soften">
-           </div>
+									  <input type="submit" value="Entrar agora »" class="btn btn-danger" />
+						}
+					</div><!--/span-->
+				  </div>            
+				 <hr class="soften">
+				 <div class="row-fluid">
+					<div class="span12">
+					  <h2><img src="../../img/Edit.png"/>CADASTRE-SE</h2>
+					  <p>Crie seu cadastro e obtenha uma conta no hictus. 
+						 Um sistema que lhe auxiliará no controle de sua igreja.</p>
+					  <p><a class="btn btn-danger" href="#">Cadastre-se »</a></p>
+					</div><!--/span-->
+				  </div>            
+				 <hr class="soften">
+		   </div>
 		</aside>
-        <section></section>
-    </div>
+		<section></section>
+	</div>
 </body>
 </html>

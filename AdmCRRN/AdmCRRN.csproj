@@ -106,7 +106,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\application.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\logon_style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -171,6 +173,15 @@
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="img\home-icons-sprite.png" />
+    <Content Include="img\ico\ico-help.gif" />
+    <Content Include="img\ico\ico-home.png" />
+    <Content Include="img\ico\ico-media.gif" />
+    <Content Include="img\ico\ico-more.png" />
+    <Content Include="img\ico\ico-notification.gif" />
+    <Content Include="img\ico\ico-order.gif" />
+    <Content Include="img\ico\ico-report.gif" />
+    <Content Include="img\ico\ico-setting.gif" />
+    <Content Include="img\ico\ico-user.gif" />
     <Content Include="img\Imagem4.png" />
     <Content Include="img\login_bg.png" />
     <Content Include="img\user_login.png" />
@@ -281,7 +292,7 @@
     <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Mail\NovoUsuario.cshtml" />
+    <Content Include="Views\Mail\NovoUsuario.html.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Entidade\_Membro.cshtml" />
