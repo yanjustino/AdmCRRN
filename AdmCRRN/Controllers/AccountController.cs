@@ -17,7 +17,7 @@ namespace AdmCRRN.Controllers
     {
         DataContext contexto = new DataContext();
 
-        [Authorize]
+        [Authorize()]
         public ActionResult Index(int id)
         {
             var instituicao = contexto.Instituicoes.Find(id);
@@ -165,7 +165,7 @@ namespace AdmCRRN.Controllers
                     contexto.SaveChanges();
 
                     var mail = new MailController();
-                    mail.NovoUsuario(conta);
+                    mail.NovoUsuario(conta).DeliverAsync();
 
                     return RedirectToAction("Index", "Home");
                 }
